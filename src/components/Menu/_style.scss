@@ -1,0 +1,154 @@
+@import '../../styles/variables';
+
+.rainbow-menu {
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 0;
+  margin-bottom: 30px;
+  list-style: none;
+  border-bottom: $menu-border-width solid $menu-border-color;
+  box-shadow: $menu-box-shadow;
+}
+
+.menu-item {
+  padding: $menu-item-padding-y $menu-item-padding-x;
+  cursor: pointer;
+  transition: $menu-transition;
+  &:hover,
+  &:focus {
+    text-decoration: none;
+  }
+  &.is-disabled {
+    color: $menu-item-disabled-color;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+  &.is-active,
+  &:hover {
+    font-weight: bold;
+    color: $menu-item-active-color;
+    border-bottom: $menu-item-active-border-width solid $menu-item-active-color;
+  }
+}
+
+.menu-vertical {
+  flex-direction: column;
+  border-bottom: none;
+  border-top: $menu-border-width solid $menu-border-color;
+  border-right: $menu-border-width solid $menu-border-color;
+  .menu-item {
+    border-bottom: none;
+    border-left: $menu-border-width solid $menu-border-color;
+    &:hover,
+    &:focus {
+      border-left: $menu-item-active-border-width * 2 solid $menu-item-active-color;
+    }
+  }
+}
+
+// 下拉菜单样式
+.submenu-item {
+  position: relative;
+
+  .submenu-title {
+    display: flex;
+    align-items: center;
+
+    .arrow-icon {
+      margin-left: 5px;
+      transition: transform 0.3s ease-in-out;
+      color: $submenu-arrow-color;
+      font-size: $submenu-arrow-size;
+    }
+
+    &.arrow-rotate {
+      .arrow-icon {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  .submenu-items {
+    list-style: none;
+    padding: $submenu-padding-y $submenu-padding-x;
+    white-space: nowrap;
+    background-color: $submenu-bg-color;
+    border: $submenu-border-width solid $submenu-border-color;
+    border-radius: $submenu-border-radius;
+    box-shadow: $submenu-box-shadow;
+    transition:
+      opacity 0.3s ease-in-out,
+      transform 0.3s ease-in-out;
+    opacity: 0;
+    transform: scaleY(0);
+    transform-origin: top;
+
+    // 子菜单项样式
+    .submenu-child-item {
+      padding: $menu-item-padding-y $menu-item-padding-x;
+      cursor: pointer;
+      border-bottom: 0;
+      font-weight: normal;
+
+      &.is-active,
+      &.submenu-item-active {
+        font-weight: bold;
+        color: $menu-item-active-color;
+        border-bottom: 0;
+      }
+
+      &:hover {
+        font-weight: bold;
+        background-color: $submenu-item-hover-bg;
+        color: $menu-item-active-color;
+        border-bottom: 0;
+      }
+    }
+  }
+
+  .submenu-items.menu-opened {
+    display: block;
+    opacity: 1;
+    transform: scaleY(1);
+    visibility: visible;
+  }
+
+  .submenu-items.menu-closed {
+    opacity: 0;
+    transform: scaleY(0);
+    // 设置延迟，在动画结束后才真正隐藏元素
+    transition:
+      opacity 0.3s ease-in-out,
+      transform 0.3s ease-in-out,
+      visibility 0s 0.3s;
+    visibility: hidden;
+  }
+}
+
+.menu-horizontal {
+  .submenu-item {
+    .submenu-items {
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      z-index: 100;
+    }
+  }
+}
+
+.menu-vertical {
+  .submenu-item {
+    .submenu-items {
+      padding-left: calc(#{$menu-item-padding-x} + 10px);
+      border-left: 0;
+      border-right: 0;
+      box-shadow: none;
+    }
+  }
+}
+
+// 单独定义子菜单项的激活样式
+.submenu-item-active {
+  font-weight: bold !important;
+  color: $menu-item-active-color !important;
+}

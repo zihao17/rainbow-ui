@@ -1,0 +1,90 @@
+@import '../../styles/variables';
+@import '../../styles/mixin';
+
+.btn {
+  position: relative;
+  display: inline-block;
+  font-weight: $font-weight-medium;
+  line-height: $line-height-base;
+  color: $body-color;
+  white-space: nowrap;
+  text-align: center;
+  vertical-align: middle;
+  background-image: none;
+  border: $border-width solid transparent;
+  @include button-size($btn-padding-y, $btn-padding-x, $btn-font-size, $btn-border-radius);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.015);
+  cursor: pointer;
+  transition: $btn-transition;
+  user-select: none;
+  margin: 0 5px;
+
+  // 焦点状态
+  &:focus,
+  &.focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba($primary, 0.25);
+  }
+
+  // 禁用状态
+  &:disabled,
+  &.disabled {
+    cursor: not-allowed;
+    opacity: $btn-disabled-opacity;
+    box-shadow: none;
+    color: $btn-disabled-color;
+    background-color: $btn-disabled-bg;
+    border-color: $btn-disabled-border-color;
+    > * {
+      pointer-events: none;
+    }
+  }
+
+  // 尺寸变体
+  &.btn-lg {
+    @include button-size($btn-padding-y-lg, $btn-padding-x-lg, $btn-font-size-lg, $btn-border-radius-lg);
+  }
+
+  &.btn-sm {
+    @include button-size($btn-padding-y-sm, $btn-padding-x-sm, $btn-font-size-sm, $btn-border-radius-sm);
+  }
+
+  // 类型变体
+  &.btn-primary {
+    @include button-style($btn-primary-color, $btn-primary-bg, $btn-primary-border);
+  }
+
+  &.btn-danger {
+    @include button-style($btn-danger-color, $btn-danger-bg, $btn-danger-border);
+  }
+
+  &.btn-default {
+    @include button-style($text-primary, $white, $gray-300, $white, $primary);
+    &:hover,
+    &:focus {
+      color: $primary;
+    }
+  }
+
+  // 链接按钮
+  &.btn-link {
+    color: $btn-link-color;
+    font-weight: $font-weight-regular;
+    text-decoration: $link-decoration;
+    box-shadow: none;
+    border: 0;
+    background: transparent;
+
+    &:hover,
+    &:focus {
+      color: $btn-link-hover-color;
+      text-decoration: $link-hover-decoration;
+    }
+
+    &.disabled,
+    &:disabled {
+      color: $btn-link-disabled-color;
+      text-decoration: none;
+    }
+  }
+}

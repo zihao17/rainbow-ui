@@ -1,0 +1,14 @@
+# 忽略项目构建输出目录
+build/
+dist/
+coverage/
+
+# 忽略node_modules
+node_modules/
+
+# 忽略配置文件
+*.config.js
+.eslintrc.js
+
+# 忽略其他文件
+*.d.ts

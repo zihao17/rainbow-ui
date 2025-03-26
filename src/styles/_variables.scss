@@ -1,0 +1,337 @@
+// ==== 中性色系 ====
+$white: #fff !default;
+$gray-50: #f8fafc !default;
+$gray-100: #f1f5f9 !default;
+$gray-200: #e2e8f0 !default;
+$gray-300: #cbd5e1 !default;
+$gray-400: #94a3b8 !default;
+$gray-500: #64748b !default;
+$gray-600: #475569 !default;
+$gray-700: #334155 !default;
+$gray-800: #1e293b !default;
+$gray-900: #0f172a !default;
+$black: #000 !default;
+
+// ==== 彩虹主题色 ====
+$purple: #7c3aed !default; // 基准紫色（500）
+$indigo: #6366f1 !default; // 基准靛蓝（500）
+$blue: #0ea5e9 !default; // 基准蓝色（500）
+$cyan: #06b6d4 !default; // 基准青色（500）
+$green: #22c55e !default; // 基准绿色（500）
+$yellow: #eab308 !default; // 基准黄色（500）
+$red: #e11d48 !default; // 基准红色（500）
+
+// ==== 扩展色 ====
+$pink: #db2777 !default; // 品红（补充色）
+$teal: #14b8a6 !default; // 蓝绿色（补充色）
+$orange: #f97316 !default; // 橙色（补充色）
+
+// ==== 功能色 ====
+$primary: $indigo !default; // 主要品牌色
+$secondary: $purple !default; // 次要品牌色
+$success: $green !default; // 成功状态
+$info: $blue !default; // 信息提示
+$warning: $yellow !default; // 警告状态
+$danger: $red !default; // 危险操作
+$light: $gray-50 !default; // 浅色背景
+$dark: $gray-900 !default; // 深色文本
+
+// ==== 语义文本色 ====
+$text-primary: $gray-900 !default;
+$text-secondary: $gray-600 !default;
+$text-success: $success !default;
+$text-danger: $danger !default;
+$text-warning: $warning !default;
+$text-info: $info !default;
+
+// ==== 高级配置 ====
+$theme-colors: (
+  'primary': $primary,
+  'secondary': $secondary,
+  'success': $success,
+  'info': $info,
+  'warning': $warning,
+  'danger': $danger,
+  'light': $light,
+  'dark': $dark,
+) !default;
+
+$colors: (
+  'purple': $purple,
+  'indigo': $indigo,
+  'blue': $blue,
+  'cyan': $cyan,
+  'green': $green,
+  'yellow': $yellow,
+  'red': $red,
+  'pink': $pink,
+  'teal': $teal,
+  'orange': $orange,
+) !default;
+
+// ===== 字体系列 =====
+$font-family-sans-serif:
+  'Inter',
+  -apple-system,
+  BlinkMacSystemFont,
+  'Segoe UI',
+  system-ui,
+  sans-serif !default;
+$font-family-serif: Georgia, 'Times New Roman', Times, serif !default;
+$font-family-monospace:
+  'Fira Code', 'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
+  monospace !default;
+$font-family-base: $font-family-sans-serif !default;
+
+// ===== 字体尺寸 =====
+$font-size-root: 16px !default; // 基准尺寸
+$font-size-base: 1.125rem !default; // 18px
+$font-size-lg: $font-size-base * 1.333 !default; // 24px
+$font-size-sm: $font-size-base * 0.889 !default; // 16px
+$font-size-xs: $font-size-base * 0.778 !default; // 14px
+
+// ===== 字体粗细 =====
+$font-weight-thin: 100 !default;
+$font-weight-extralight: 200 !default;
+$font-weight-light: 300 !default;
+$font-weight-regular: 400 !default;
+$font-weight-medium: 500 !default;
+$font-weight-semibold: 600 !default;
+$font-weight-bold: 700 !default;
+$font-weight-extrabold: 800 !default;
+$font-weight-black: 900 !default;
+$font-weight-base: $font-weight-regular !default;
+
+// ===== 行高 =====
+$line-height-base: 1.6 !default; // 正文行高
+$line-height-heading: 1.3 !default; // 标题行高
+$line-height-lg: 1.8 !default; // 长文本行高
+$line-height-sm: 1.4 !default; // 紧凑行高
+
+// ===== 标题系统 =====
+$h1-font-size: $font-size-base * 3.2 !default; // 57.6px
+$h2-font-size: $font-size-base * 2.4 !default; // 43.2px
+$h3-font-size: $font-size-base * 1.8 !default; // 32.4px
+$h4-font-size: $font-size-base * 1.4 !default; // 25.2px
+$h5-font-size: $font-size-base * 1.1 !default; // 19.8px
+$h6-font-size: $font-size-base !default; // 18px
+
+// ===== 链接样式 =====
+$link-color: $indigo !default; // 使用主题色
+$link-decoration: underline transparent !default;
+$link-hover-color: darken($indigo, 10%) !default;
+$link-hover-decoration: underline !default;
+$link-transition: all 0.2s ease-in-out !default;
+
+// ===== 全局排版 =====
+$body-bg: $gray-50 !default; // 使用中性色
+$body-color: $gray-900 !default; // 高对比度文本
+$body-text-align: left !default;
+$letter-spacing-base: 0.01em !default; // 基础字距
+$letter-spacing-heading: -0.02em !default; // 标题紧凑字距
+
+// ===== 响应式断点 =====
+$typography-breakpoints: (
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+) !default;
+
+// 响应式字体示例
+@mixin responsive-font($min-size, $max-size) {
+  font-size: clamp(
+    #{$min-size},
+    calc(1rem + #{$max-size - $min-size} * var(--scale-factor)),
+    #{$max-size}
+  );
+}
+
+// HR
+$hr-margin-y: 1rem !default;
+$hr-color: inherit !default;
+$hr-height: 1px !default;
+$hr-opacity: 0.25 !default;
+
+// ==== 标题样式 ====
+$headings-margin-bottom: 0.5rem !default;
+$headings-font-family: null !default;
+$headings-font-style: null !default;
+$headings-font-weight: $font-weight-semibold !default;
+$headings-line-height: $line-height-heading !default;
+$headings-color: null !default;
+
+// ==== 段落样式 ====
+$paragraph-margin-bottom: 1rem !default;
+
+// ==== 间距系统 ====
+$spacer: 1rem !default;
+$spacers: (
+  0: 0,
+  1: $spacer * 0.25,
+  // 4px
+  2: $spacer * 0.5,
+  // 8px
+  3: $spacer,
+  // 16px
+  4: $spacer * 1.5,
+  // 24px
+  5: $spacer * 3, // 48px
+) !default;
+
+// ==== 边框 ====
+$border-width: 1px !default;
+$border-color: $gray-300 !default;
+$border-radius: 0.375rem !default;
+$border-radius-sm: 0.25rem !default;
+$border-radius-lg: 0.5rem !default;
+$border-radius-pill: 50rem !default;
+
+// ==== 表格 ====
+$table-cell-padding-y: 0.75rem !default;
+$table-cell-padding-x: 0.75rem !default;
+$table-border-color: $border-color !default;
+
+// ==== 按钮 ====
+
+$btn-padding-y: 0.5rem !default;
+$btn-padding-x: 1rem !default;
+$btn-font-size: $font-size-base !default;
+$btn-border-radius: $border-radius !default;
+$btn-transition: all 0.15s ease-in-out !default;
+// 按钮尺寸变体
+$btn-padding-y-sm: 0.25rem !default;
+$btn-padding-x-sm: 0.5rem !default;
+$btn-font-size-sm: $font-size-sm !default;
+$btn-border-radius-sm: $border-radius-sm !default;
+
+$btn-padding-y-lg: 0.75rem !default;
+$btn-padding-x-lg: 1.5rem !default;
+$btn-font-size-lg: $font-size-lg !default;
+$btn-border-radius-lg: $border-radius-lg !default;
+
+// 按钮类型样式
+$btn-primary-color: $white !default;
+$btn-primary-bg: $primary !default;
+$btn-primary-border: $primary !default;
+$btn-primary-hover-bg: darken($primary, 7.5%) !default;
+$btn-primary-hover-border: darken($primary, 10%) !default;
+
+$btn-secondary-color: $white !default;
+$btn-secondary-bg: $secondary !default;
+$btn-secondary-border: $secondary !default;
+$btn-secondary-hover-bg: darken($secondary, 7.5%) !default;
+$btn-secondary-hover-border: darken($secondary, 10%) !default;
+
+$btn-danger-color: $white !default;
+$btn-danger-bg: $danger !default;
+$btn-danger-border: $danger !default;
+$btn-danger-hover-bg: darken($danger, 7.5%) !default;
+$btn-danger-hover-border: darken($danger, 10%) !default;
+
+$btn-success-color: $white !default;
+$btn-success-bg: $success !default;
+$btn-success-border: $success !default;
+$btn-success-hover-bg: darken($success, 7.5%) !default;
+$btn-success-hover-border: darken($success, 10%) !default;
+
+$btn-warning-color: $dark !default;
+$btn-warning-bg: $warning !default;
+$btn-warning-border: $warning !default;
+$btn-warning-hover-bg: darken($warning, 7.5%) !default;
+$btn-warning-hover-border: darken($warning, 10%) !default;
+
+$btn-info-color: $white !default;
+$btn-info-bg: $info !default;
+$btn-info-border: $info !default;
+$btn-info-hover-bg: darken($info, 7.5%) !default;
+$btn-info-hover-border: darken($info, 10%) !default;
+
+$btn-light-color: $gray-900 !default;
+$btn-light-bg: $light !default;
+$btn-light-border: $light !default;
+$btn-light-hover-bg: darken($light, 7.5%) !default;
+$btn-light-hover-border: darken($light, 10%) !default;
+
+$btn-dark-color: $white !default;
+$btn-dark-bg: $dark !default;
+$btn-dark-border: $dark !default;
+$btn-dark-hover-bg: darken($dark, 7.5%) !default;
+$btn-dark-hover-border: darken($dark, 10%) !default;
+
+// 按钮禁用状态
+$btn-disabled-opacity: 0.65 !default;
+$btn-disabled-color: $gray-600 !default;
+$btn-disabled-bg: $gray-200 !default;
+$btn-disabled-border-color: $gray-300 !default;
+
+// 链接按钮
+$btn-link-color: $primary !default;
+$btn-link-hover-color: darken($primary, 15%) !default;
+$btn-link-disabled-color: $gray-500 !default;
+
+// ==== 表单 ====
+$input-padding-y: 0.5rem !default;
+$input-padding-x: 0.75rem !default;
+$input-font-size: $font-size-base !default;
+$input-border-width: $border-width !default;
+$input-border-color: $gray-400 !default;
+$input-border-radius: $border-radius !default;
+$input-focus-border-color: lighten($primary, 25%) !default;
+$input-placeholder-color: $gray-500 !default;
+
+// ==== 扩展文本样式 ====
+$small-font-size: 0.875em !default;
+$sub-sup-font-size: 0.75em !default;
+$text-muted: $gray-600 !default;
+$dt-font-weight: $font-weight-bold !default;
+$font-weight-bolder: bolder !default;
+
+// ==== 代码样式 ====
+$code-font-size: 0.875em !default;
+$code-color: $pink !default;
+$pre-color: null !default;
+
+// ==== 表单元素 ====
+$legend-margin-bottom: 0.5rem !default;
+$legend-font-size: 1.5rem !default;
+$legend-font-weight: null !default;
+$mark-padding: 0.2em !default;
+$mark-bg: #fcf8e3 !default;
+
+// ==== 按钮 ====
+$enable-pointer-cursor-for-buttons: true !default;
+
+
+
+// ==== 菜单组件 ====
+// Menu 组件样式变量
+$menu-border-width: $border-width !default;
+$menu-border-color: $border-color !default;
+$menu-box-shadow:
+  inset 0 1px 0 rgba($white, 0.15),
+  0 1px 1px rgba($black, 0.075) !default;
+$menu-transition:
+  color 0.3s ease-in-out,
+  border-color 0.3s ease-in-out !default;
+
+
+// 菜单项
+$menu-item-padding-y: 0.5rem !default;
+$menu-item-padding-x: 1rem !default;
+$menu-item-active-color: $primary !default;
+$menu-item-active-border-width: 2px !default;
+$menu-item-disabled-color: $gray-600 !default;
+
+// 下拉菜单
+$submenu-box-shadow: 0 2px 4px 0 rgba($black, 0.12), 0 0 6px 0 rgba($black, 0.04) !default;
+$submenu-bg-color: $white !default;
+$submenu-padding-y: 0.5rem !default;
+$submenu-padding-x: 1rem !default;
+$submenu-border-radius: $border-radius !default;
+$submenu-border-color: $border-color !default;
+$submenu-border-width: $border-width !default;
+$submenu-transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out !default;
+$submenu-arrow-color: $gray-600 !default;
+$submenu-arrow-size: 0.25rem !default;
+$submenu-item-hover-bg: $gray-100 !default;

@@ -1,0 +1,159 @@
+@import '../../styles/variables';
+@import '../../styles/mixin';
+
+// Alert 基础样式
+.rainbow-alert {
+  position: fixed;
+  top: 20px; // 修改为页面上方
+  left: 50%;
+  transform: translateX(-50%); // 只需要水平居中
+  width: 400px; // 固定宽度
+  max-width: 90vw; // 响应式: 不超过视口宽度的90%
+  padding: $spacer * 0.875 $spacer * 1.25;
+  border-radius: $border-radius;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  box-shadow: 0 3px 8px rgba($gray-800, 0.15);
+  z-index: 1050;
+  opacity: 1;
+  visibility: visible;
+
+  // 出现动画
+  animation: alert-in 0.3s ease forwards;
+
+  // 关闭时的动画状态
+  &.rainbow-alert-leaving {
+    animation: alert-out 0.3s ease forwards;
+  }
+
+  // Alert 内容区域
+  .rainbow-alert-content {
+    flex: 1;
+    padding-right: $spacer;
+  }
+
+  // Alert 标题
+  .rainbow-alert-title {
+    font-weight: $font-weight-semibold;
+    font-size: $font-size-base * 1.1;
+    line-height: 1.4;
+    margin-bottom: 0.25rem;
+    color: inherit;
+  }
+
+  // Alert 描述内容
+  .rainbow-alert-description {
+    font-size: $font-size-sm;
+    line-height: 1.6;
+    color: inherit;
+    opacity: 0.9;
+  }
+
+  // 关闭按钮
+  .rainbow-alert-close-btn {
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin: 0 0 0 $spacer * 0.5;
+    font-size: $font-size-lg;
+    line-height: 1;
+    cursor: pointer;
+    color: inherit;
+    opacity: 0.5;
+    transition: opacity 0.2s ease;
+
+    &:hover,
+    &:focus {
+      opacity: 0.8;
+      outline: none;
+    }
+
+    .rainbow-alert-close-icon {
+      display: block;
+      line-height: 1;
+    }
+  }
+
+  // 不同类型的 Alert 样式
+  &.rainbow-alert-default {
+    background-color: lighten($gray-300, 12%);
+    color: $gray-800;
+    border-left: 3px solid $gray-500;
+  }
+
+  &.rainbow-alert-success {
+    background-color: lighten($success, 42%);
+    color: darken($success, 10%);
+    border-left: 3px solid $success;
+  }
+
+  &.rainbow-alert-danger {
+    background-color: lighten($danger, 42%);
+    color: darken($danger, 5%);
+    border-left: 3px solid $danger;
+  }
+
+  &.rainbow-alert-warning {
+    background-color: lighten($warning, 38%);
+    color: darken($warning, 18%);
+    border-left: 3px solid $warning;
+  }
+}
+
+// Alert 动画关键帧（修改为从上方滑入滑出）
+@keyframes alert-in {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+@keyframes alert-out {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -20px);
+  }
+}
+
+// 响应式设计
+@media screen and (max-width: 576px) {
+  .rainbow-alert {
+    width: 85vw;
+    padding: $spacer * 0.75 $spacer;
+
+    .rainbow-alert-title {
+      font-size: $font-size-base;
+    }
+
+    .rainbow-alert-description {
+      font-size: $font-size-xs;
+    }
+  }
+}
+
+// Alert 演示组件样式
+.alert-demo {
+  margin: 20px 0;
+
+  .demo-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  h2 {
+    margin-bottom: 16px;
+    font-weight: $font-weight-bold;
+    color: $gray-800;
+  }
+}

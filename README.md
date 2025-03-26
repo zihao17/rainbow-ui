@@ -2,45 +2,46 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## `npm start`
 
-In the project directory, you can run:
+# My Notes
 
-### `npm start`
+components
+style: variables / reboot / index
+Button: mixin / style / button.tsx
+Alert: style / alert.tsx / demo
+jest test react-testing-library jest-dom npm run test xxx.test.tsx
+Menu: useState / useContext
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+解决Menu.defaultProps报错
+Partial 替代 defaultProps , 合并默认属性和传入的属性
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### 3.25今日总结
 
-### `npm test`
+1. 组件开发进展
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+   - 完成了 Button 组件的基础实现，包括样式和类型定义
+   - 实现了 Alert 组件，包含基础样式和演示页面
+   - 开始开发 Menu 组件，使用 React Hooks (useState, useContext) 进行状态管理
 
-### `npm run build`
+2. 测试相关
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+   - 配置了 Jest 和 React Testing Library 测试环境
+   - 使用 jest-dom 进行 DOM 测试
+   - 编写了组件测试用例（.test.tsx 文件）
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3. 技术改进
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   - 解决了 Menu.defaultProps 的类型报错问题
+   - 使用 TypeScript 的 Partial 类型来替代 defaultProps，实现了更好的属性合并机制
 
-### `npm run eject`
+4. 样式系统
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+   - 建立了基础的样式变量系统
+   - 实现了样式重置（reboot）
+   - 创建了统一的样式索引文件
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+5. 项目结构优化
+   - 组件目录结构规范化
+   - 分离了样式和逻辑代码
+   - 添加了组件演示页面
