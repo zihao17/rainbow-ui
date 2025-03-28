@@ -1,6 +1,23 @@
+// 变量
 @import 'variables';
+
+// 重置
 @import 'reboot';
+
+// 按钮
 @import '../components/Button/_style.scss';
+
+// 提示框
 @import '../components/Alert/_style.scss';
+
+// 混合
 @import 'mixin';
+
+// 菜单
 @import '../components/Menu/_style.scss';
+
+// 图标
+@import '../components/Icon/_style.scss';
+
+// animation
+@import 'animation';

@@ -4,7 +4,24 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## `npm start`
 
-# My Notes
+## github
+
+[text](https://github.com/zihao17/rainbow-ui)
+
+[text](https://rainbow-9bwb6s833-zihao17s-projects.vercel.app/)
+
+## TODO
+
+项⽬⼯作：
+基于Monorepo实现多包管理，使⽤pnpm workspace统⼀依赖版本，采⽤ESlint+Husky规范代码质
+量，实现提交前⾃动检查
+封装15+常⽤组件，包括Message函数组件、Tree递归组件、Dialog/Select传送⻔等复杂组件，⽀
+持按需引⼊和全局引⼊
+设计Preview插件，实现组件源码预览，并集成highlight.js，实现代码⾼亮
+使⽤VitePress搭建组件库⽂档站点，提供完整的⽂档和组件实例，并⾃动化部署到vercel
+完成npm打包发布，⽀持ES Module、UMD两种格式输出
+
+## My Notes
 
 components
 style: variables / reboot / index
@@ -45,3 +62,17 @@ Partial 替代 defaultProps , 合并默认属性和传入的属性
    - 组件目录结构规范化
    - 分离了样式和逻辑代码
    - 添加了组件演示页面
+
+### 3.26今日总结
+
+1. 组件开发进展
+
+   - 完成了 Menu 组件的基础实现，包括样式和类型定义
+   - 实现了 Transition 组件，包含基础样式和演示页面.
+
+storybook 组件文档
+info addon
+
+### 3.27今日总结
+
+### 3.28

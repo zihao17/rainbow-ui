@@ -58,13 +58,6 @@
       margin-left: 5px;
       transition: transform 0.3s ease-in-out;
       color: $submenu-arrow-color;
-      font-size: $submenu-arrow-size;
-    }
-
-    &.arrow-rotate {
-      .arrow-icon {
-        transform: rotate(180deg);
-      }
     }
   }
 
@@ -123,6 +116,16 @@
       visibility 0s 0.3s;
     visibility: hidden;
   }
+}
+
+// 默认箭头状态
+.arrow-icon {
+  transform: rotate(0deg);
+}
+
+// 菜单打开状态时箭头旋转
+.submenu-item.is-opened .submenu-title .arrow-icon {
+  transform: rotate(180deg) !important;
 }
 
 .menu-horizontal {

@@ -11,6 +11,7 @@ export enum ButtonSize {
 export enum ButtonType {
     Default = 'default',
     Primary = 'primary',
+    Warning = 'warning',
     Danger = 'danger',
     Link = 'link',
 }
@@ -28,7 +29,6 @@ type NativeButtonProps = React.ButtonHTMLAttributes<HTMLElement>
 type AnchorButtonProps = React.AnchorHTMLAttributes<HTMLElement>
 export type ButtonProps = BaseButtonProps & Partial<NativeButtonProps & AnchorButtonProps>
 
-
 const Button: React.FC<ButtonProps> = (props) => {
     const {
         btnType = ButtonType.Default,
@@ -42,7 +42,7 @@ const Button: React.FC<ButtonProps> = (props) => {
     const classes = classNames('btn', className, {
         [`btn-${btnType}`]: btnType,
         [`btn-${size}`]: size,
-        'disabled':disabled,
+        'disabled': disabled,
     });
     if (btnType === ButtonType.Link && href) {
         return (

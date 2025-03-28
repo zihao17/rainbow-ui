@@ -54,6 +54,10 @@
     @include button-style($btn-primary-color, $btn-primary-bg, $btn-primary-border);
   }
 
+  &.btn-warning {
+    @include button-style($btn-warning-color, $btn-warning-bg, $btn-warning-border);
+  } 
+
   &.btn-danger {
     @include button-style($btn-danger-color, $btn-danger-bg, $btn-danger-border);
   }

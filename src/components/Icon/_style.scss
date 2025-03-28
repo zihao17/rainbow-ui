@@ -1,0 +1,8 @@
+// 从 variables $theme-colors 中循环添加
+@each $color, $value in $theme-colors {
+    .icon-#{$color} {
+        color: $value;
+    }
+}
+
+

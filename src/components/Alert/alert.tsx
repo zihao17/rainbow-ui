@@ -51,7 +51,7 @@ const Alert: React.FC<AlertProps> = (props) => {
     const timerRef = useRef<NodeJS.Timeout | null>(null);
 
     // 关闭 Alert 的处理函数
-    const handleClose = () => {
+    const handleClose = React.useCallback(() => {
         setLeaving(true);
         // 动画结束后真正移除组件
         setTimeout(() => {
@@ -60,7 +60,7 @@ const Alert: React.FC<AlertProps> = (props) => {
                 onClose();
             }
         }, 300); // 300ms 与 CSS 过渡动画时间一致
-    };
+    }, [onClose]);
 
     useEffect(() => {
         // 每次组件挂载时重置状态
@@ -81,7 +81,7 @@ const Alert: React.FC<AlertProps> = (props) => {
                 clearTimeout(timerRef.current);
             }
         };
-    }, [duration]);
+    }, [duration, handleClose]);
 
     // 生成 Alert 样式类名
     const classes = classNames('rainbow-alert', className, {
