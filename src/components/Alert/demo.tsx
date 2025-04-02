@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Alert, { AlertType } from './alert';
-import Button, { ButtonType } from '../Button/button';
+import Button, { ButtonType } from '../Button';
 
 /**
  * Alert 演示组件

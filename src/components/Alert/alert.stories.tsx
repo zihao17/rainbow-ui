@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import Alert, { AlertType, AlertProps } from './alert';
-import Button, { ButtonType, ButtonSize } from '../Button/button';
+import Button, { ButtonType, ButtonSize } from '../Button';
 import React from 'react';
 
 // 组件文档信息

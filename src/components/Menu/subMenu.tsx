@@ -2,7 +2,7 @@ import React, { useContext, useState, useRef } from 'react'
 import classnames from 'classnames'
 import { MenuContext } from './menu'
 import { MenuItemProps } from './menuItem'
-import Icon from '../Icon/icon'
+import Icon from '../Icon'
 
 export interface SubMenuProps {
   index?: string | number;

@@ -1,0 +1,206 @@
+@import '../../styles/variables';
+@import '../../styles/mixin';
+
+.rainbow-select {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  min-width: 150px;
+  margin-bottom: 10px;
+  font-size: $font-size-base;
+  color: rgb(255, 255, 255);
+
+  // 选择器样式
+  .rainbow-select-selector {
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    min-height: $input-height;
+    padding: $input-padding-y $input-padding-x;
+    background-color: $input-bg;
+    border: $input-border-width solid $input-border-color;
+    border-radius: $input-border-radius;
+    transition: all $select-transition-duration;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    &:hover {
+      border-color: $input-focus-border-color;
+    }
+  }
+
+  // 选择器值显示区域
+  .rainbow-select-value {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: $body-color;
+
+    &:empty::before {
+      content: attr(data-placeholder);
+      color: $input-placeholder-color;
+    }
+  }
+
+  // 选择器箭头
+  .rainbow-select-arrow {
+    position: absolute;
+    top: 50%;
+    right: 11px;
+    width: $select-arrow-size;
+    height: $select-arrow-size;
+    margin-top: -($select-arrow-size / 2);
+    color: $select-arrow-color;
+    font-size: 12px;
+    line-height: 1;
+    text-align: center;
+    pointer-events: none;
+    transition: transform $select-transition-duration;
+  }
+
+  // 下拉菜单
+  .rainbow-select-dropdown {
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    z-index: $select-z-index;
+    width: 100%;
+    max-height: 250px;
+    overflow-y: auto;
+    margin: 0;
+    padding: 4px 0;
+    background-color: $white;
+    box-shadow: $box-shadow;
+    border-radius: $border-radius;
+    list-style: none;
+  }
+
+  // 下拉选项
+  .rainbow-select-item {
+    position: relative;
+    display: block;
+    padding: 8px 12px;
+    color: $body-color;
+    font-weight: $select-font-weight;
+    line-height: 1.5;
+    cursor: pointer;
+    transition: background $select-transition-duration ease;
+
+    &:hover:not(.is-disabled) {
+      background-color: $select-item-hover-bg;
+    }
+
+    &.is-selected {
+      color: $primary;
+      font-weight: $font-weight-bold;
+      background-color: $select-item-selected-bg;
+    }
+
+    &.is-disabled {
+      color: $gray-500;
+      cursor: not-allowed;
+      background-color: $gray-100;
+    }
+
+    // 多选选中标记
+    .rainbow-select-item-check {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: $primary;
+      font-size: 12px;
+    }
+  }
+
+  // 多选模式标签样式
+  .rainbow-select-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 5px;
+  }
+
+  .rainbow-select-tag {
+    display: inline-flex;
+    align-items: center;
+    max-width: 100%;
+    height: $select-multiple-item-height;
+    padding: 0 $select-multiple-item-padding-x;
+    font-size: $font-size-sm;
+    line-height: 22px;
+    background: $select-multiple-item-bg;
+    border: 1px solid $select-multiple-item-border-color;
+    border-radius: $border-radius-sm;
+    color: $primary;
+
+    .rainbow-select-tag-remove {
+      margin-left: 4px;
+      color: $primary;
+      font-size: 10px;
+      cursor: pointer;
+
+      &:hover {
+        color: darken($primary, 10%);
+      }
+    }
+  }
+
+  // 尺寸变体
+  &.select-large {
+    .rainbow-select-selector {
+      padding: $input-padding-y-lg $input-padding-x-lg;
+      font-size: $font-size-lg;
+      min-height: $input-height-lg;
+    }
+
+    .rainbow-select-arrow {
+      font-size: 14px;
+    }
+  }
+
+  &.select-small {
+    .rainbow-select-selector {
+      padding: $input-padding-y-sm $input-padding-x-sm;
+      font-size: $font-size-sm;
+      min-height: $input-height-sm;
+    }
+
+    .rainbow-select-arrow {
+      font-size: 10px;
+    }
+  }
+
+  // 禁用状态
+  &.is-disabled {
+    .rainbow-select-selector {
+      background-color: $input-disabled-bg;
+      border-color: $input-disabled-border-color;
+      color: $input-disabled-color;
+      cursor: not-allowed;
+
+      &:hover {
+        border-color: $input-disabled-border-color;
+      }
+    }
+
+    .rainbow-select-arrow {
+      color: $input-disabled-color;
+    }
+  }
+
+  // 菜单打开状态
+  &.menu-is-open {
+    .rainbow-select-selector {
+      border-color: $input-focus-border-color;
+      box-shadow: $input-focus-box-shadow;
+    }
+
+    .rainbow-select-arrow {
+      transform: rotate(180deg);
+    }
+  }
+}

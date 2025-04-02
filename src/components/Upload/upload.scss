@@ -1,0 +1,162 @@
+// 上传组件样式
+.rainbow-ui-upload-component {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  // 文件列表
+  .rainbow-ui-upload-list {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+
+    // 列表项
+    .rainbow-ui-upload-list-item {
+      position: relative;
+      margin-top: 5px;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      border-radius: 4px;
+      border: 1px solid #eee;
+      transition: all 0.3s;
+
+      &:hover {
+        background-color: #f8f9fa;
+
+        .file-actions {
+          display: block;
+        }
+      }
+
+      // 文件名称
+      .file-name {
+        flex-grow: 1;
+        margin-right: 15px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        .icon {
+          margin-right: 5px;
+        }
+
+        &.file-name-error {
+          color: #dc3545;
+        }
+
+        &.file-name-success {
+          color: #28a745;
+        }
+      }
+
+      // 状态图标
+      .file-status {
+        .icon {
+          transition: all 0.3s;
+        }
+      }
+
+      // 操作按钮
+      .file-actions {
+        display: none;
+        margin-left: 10px;
+
+        .icon {
+          cursor: pointer;
+          color: #6c757d;
+          transition: all 0.3s;
+
+          &:hover {
+            color: #dc3545;
+          }
+        }
+      }
+
+      // 进度条
+      .rainbow-ui-progress-bar-wrapper {
+        width: 100%;
+        margin: 5px 0;
+      }
+    }
+  }
+
+  // 拖拽上传区域
+  .rainbow-ui-uploader-dragger {
+    width: 100%;
+    padding: 20px;
+    border: 2px dashed #dee2e6;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+
+    &:hover {
+      border-color: #007bff;
+    }
+
+    &.is-dragover {
+      border-color: #28a745;
+      background-color: rgba(40, 167, 69, 0.1);
+    }
+
+    .rainbow-ui-upload-dragger-inner {
+      .rainbow-ui-upload-drag-icon {
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+
+      .rainbow-ui-upload-drag-text {
+        font-size: 16px;
+        color: #6c757d;
+      }
+    }
+  }
+}
+
+// 进度条样式
+.rainbow-ui-progress-bar-wrapper {
+  width: 100%;
+  background-color: #e9ecef;
+  border-radius: 0.25rem;
+  overflow: hidden;
+
+  .rainbow-ui-progress-bar {
+    height: 100%;
+    border-radius: 0.25rem;
+    transition: width 0.3s ease;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &.color-primary {
+      background-color: #007bff;
+    }
+
+    &.color-secondary {
+      background-color: #6c757d;
+    }
+
+    &.color-success {
+      background-color: #28a745;
+    }
+
+    &.color-info {
+      background-color: #17a2b8;
+    }
+
+    &.color-warning {
+      background-color: #ffc107;
+    }
+
+    &.color-danger {
+      background-color: #dc3545;
+    }
+
+    .inner-text {
+      color: #fff;
+      font-size: 12px;
+    }
+  }
+}
