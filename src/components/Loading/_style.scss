@@ -1,0 +1,110 @@
+@import '../../styles/variables';
+@import '../../styles/mixin';
+
+// Loading 组件容器样式
+.rainbow-loading-container {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  min-height: 80px;
+
+  // 遮罩层样式
+  &.with-mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.7);
+    z-index: 100;
+  }
+
+  // 全屏加载样式
+  &.fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+  }
+}
+
+// 旋转动画容器
+.rainbow-loading-spinner {
+  position: relative;
+  width: 60px;
+  height: 60px;
+
+  // 响应式调整
+
+}
+
+// 彩虹色球样式
+.rainbow-ball {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  animation: rainbow-rotate 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+
+
+  &:nth-child(1) {
+    background-color: #338988;
+    animation-delay: 0s;
+  }
+
+  &:nth-child(2) {
+    background-color: #f2c32b;
+    animation-delay: -0.1s;
+  }
+
+  &:nth-child(3) {
+    background-color: #f6653c;
+    animation-delay: -0.2s;
+  }
+
+  &:nth-child(4) {
+    background-color: #f45540;
+    animation-delay: -0.3s;
+  }
+
+  &:nth-child(5) {
+    background-color: #e882cf;
+    animation-delay: -0.4s;
+  }
+
+  &:nth-child(6) {
+    background-color: #b775df;
+    animation-delay: -0.5s;
+  }
+
+  &:nth-child(7) {
+    background-color: #376dd8;
+    animation-delay: -0.6s;
+  }
+
+  &:nth-child(8) {
+    background-color: #329fe2;
+    animation-delay: -0.7s;
+  }
+}
+
+// 定义旋转动画
+@keyframes rainbow-rotate {
+  0% {
+    transform: rotate(0deg) translateX(25px) rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg) translateX(25px) rotate(-360deg);
+  }
+}
+
+// 加载文本样式
+.rainbow-loading-text {
+  margin-top: 16px;
+  font-size: $font-size-base;
+  color: $gray-600;
+  text-align: center;
+}

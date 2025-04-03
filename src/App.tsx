@@ -15,7 +15,9 @@ import Transition from './components/Transition/transition';
 import Input from './components/Input/input';
 import Select, { SelectMode } from './components/Select/select';
 import Upload, { UploadFile } from './components/Upload/upload';
+import Loading from './components/Loading';
 import './components/Upload/upload.scss';
+import PaginatorExample from './components/Paginator/paginator.example';
 
 function App() {
   // 添加一个状态来控制直接使用的Alert显示
@@ -97,6 +99,41 @@ function App() {
   // 处理文件移除
   const handleRemove = (file: UploadFile) => {
     console.log(`移除文件: ${file.name}`);
+  };
+
+  // 添加Loading组件的状态
+  const [loading, setLoading] = useState(false);
+  const [fullscreenLoading, setFullscreenLoading] = useState(false);
+  const [contentLoading, setContentLoading] = useState(false);
+
+  // 模拟异步请求函数
+  const simulateRequest = (duration = 2000) => {
+    return new Promise<void>((resolve) => {
+      setTimeout(() => {
+        resolve();
+      }, duration);
+    });
+  };
+
+  // 处理基础加载
+  const handleBasicLoading = async () => {
+    setLoading(true);
+    await simulateRequest();
+    setLoading(false);
+  };
+
+  // 处理全屏加载
+  const handleFullscreenLoading = async () => {
+    setFullscreenLoading(true);
+    await simulateRequest(3000);
+    setFullscreenLoading(false);
+  };
+
+  // 处理内容区域加载
+  const handleContentLoading = async () => {
+    setContentLoading(true);
+    await simulateRequest(2500);
+    setContentLoading(false);
   };
 
   return (
@@ -293,6 +330,60 @@ function App() {
           }}
         />
       </div>
+
+      <h4>Loading 加载组件</h4>
+      <div style={{ margin: '20px 0', padding: '20px', border: '1px solid #eee' }}>
+        <h3>基础用法</h3>
+        <Button btnType={ButtonType.Primary} onClick={handleBasicLoading} style={{ marginRight: '10px' }}>
+          显示加载
+        </Button>
+        <Loading isLoading={loading} text="加载中..." />
+      </div>
+
+      <div style={{ margin: '20px 0', padding: '20px', border: '1px solid #eee' }}>
+        <h3>全屏加载</h3>
+        <Button btnType={ButtonType.Primary} onClick={handleFullscreenLoading}>
+          显示全屏加载 (3秒)
+        </Button>
+        <Loading isLoading={fullscreenLoading} fullscreen={true} withMask={true} text="数据加载中，请稍候..." />
+      </div>
+
+      <div style={{ margin: '20px 0', padding: '20px', border: '1px solid #eee' }}>
+        <h3>包裹内容</h3>
+        <Button btnType={ButtonType.Primary} onClick={handleContentLoading} style={{ marginBottom: '20px' }}>
+          {contentLoading ? '加载中...' : '加载内容区域'}
+        </Button>
+
+        <Loading isLoading={contentLoading} withMask={true} text="加载中...">
+          <div style={{ padding: '20px', border: '1px solid #eee', minHeight: '200px' }}>
+            <h4>内容区域</h4>
+            <p>这里是被 Loading 组件包裹的内容</p>
+            <p>当 isLoading 为 true 时，将显示加载状态</p>
+            <p>加载时内容区域可以被遮罩</p>
+          </div>
+        </Loading>
+      </div>
+
+      <div style={{ margin: '20px 0', padding: '20px', border: '1px solid #eee' }}>
+        <h3>自定义彩虹球数量</h3>
+        <div style={{ display: 'flex', justifyContent: 'space-around' }}>
+          <div>
+            <p>4个彩虹球</p>
+            <Loading ballCount={4} />
+          </div>
+          <div>
+            <p>8个彩虹球（默认）</p>
+            <Loading />
+          </div>
+          <div>
+            <p>12个彩虹球</p>
+            <Loading ballCount={12} />
+          </div>
+        </div>
+      </div>
+
+      <h4>分页器组件</h4>
+      <PaginatorExample />
 
       <hr />
       <p>END</p>

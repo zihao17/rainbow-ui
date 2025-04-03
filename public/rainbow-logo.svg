@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200px" height="50px" viewBox="0 0 200 50" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <linearGradient x1="0%" y1="0%" x2="100%" y2="100%" id="rainbowGradient">
+            <stop stop-color="#7c3aed" offset="0%"></stop>
+            <stop stop-color="#6366f1" offset="25%"></stop>
+            <stop stop-color="#0ea5e9" offset="50%"></stop>
+            <stop stop-color="#22c55e" offset="75%"></stop>
+            <stop stop-color="#eab308" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M25,40 C36.0457,40 45,31.0457 45,20 C45,8.9543 36.0457,0 25,0 C13.9543,0 5,8.9543 5,20 C5,31.0457 13.9543,40 25,40 Z"
+            stroke="url(#rainbowGradient)"
+            stroke-width="4"
+            stroke-linecap="round"
+            fill="#FFFFFF">
+        </path>
+        <text font-family="Inter, sans-serif" font-size="24" font-weight="700" fill="#0f172a">
+            <tspan x="55" y="30">Rainbow UI</tspan>
+        </text>
+    </g>
+</svg>

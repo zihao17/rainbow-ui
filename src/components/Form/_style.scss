@@ -1,0 +1,29 @@
+.rainbow-row {
+    .rainbow-row {
+        display: flex;
+        align-items: center;
+        margin-bottom: 25px;
+        &.rainbow-row-no-label {
+            flex-direction: row-reverse;
+        }
+        .rainbow-form-item-label {
+            flex-basis: 30%;
+            text-align: right;
+            padding-right: 10px;
+            >label {
+                margin-bottom: 0;
+            }
+        }
+        .rainbow-form-item {
+            flex-basis: 70%;
+            .rainbow-input {
+                margin-bottom: 0;
+            }
+        }
+    }
+    .rainbow-form-submit-area {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}

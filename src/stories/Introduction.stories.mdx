@@ -1,0 +1,154 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="介绍/Rainbow UI" />
+
+<style>
+  {`
+    .rainbow-banner {
+      padding: 2rem;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(124, 58, 237, 0.05) 100%);
+      border-radius: 0.5rem;
+      border: 1px solid #e2e8f0;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    .rainbow-title {
+      color: #6366f1;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+    .color-palette {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+    .color-item {
+      width: 100px;
+      height: 100px;
+      border-radius: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-weight: 600;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+    }
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    .feature-item {
+      padding: 1.5rem;
+      border-radius: 0.5rem;
+      border: 1px solid #e2e8f0;
+      background-color: white;
+    }
+    .feature-title {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: #6366f1;
+    }
+  `}
+</style>
+
+<div className="rainbow-banner">
+  <img src="rainbow-logo.svg" alt="Rainbow UI Logo" width="300" />
+  <h1 className="rainbow-title">现代化的 React 组件库</h1>
+  <p>轻量、美观、易用的UI组件，为现代Web应用设计</p>
+</div>
+
+## 🌈 设计原则
+
+Rainbow UI 基于以下设计原则创建：
+
+- **美观** - 具有现代感的视觉设计，色彩鲜明
+- **一致性** - 组件间保持一致的设计语言和交互模式
+- **灵活性** - 提供丰富的属性和配置选项
+- **可访问性** - 符合 WCAG 2.1 标准，对所有用户友好
+- **性能优先** - 轻量且高效的实现
+
+## 🎨 主题色彩
+
+Rainbow UI 采用丰富多彩的调色板，灵感来自自然界的彩虹：
+
+<div className="color-palette">
+  <div className="color-item" style={{ backgroundColor: '#7c3aed' }}>
+    紫色
+  </div>
+  <div className="color-item" style={{ backgroundColor: '#6366f1' }}>
+    靛蓝
+  </div>
+  <div className="color-item" style={{ backgroundColor: '#0ea5e9' }}>
+    蓝色
+  </div>
+  <div className="color-item" style={{ backgroundColor: '#06b6d4' }}>
+    青色
+  </div>
+  <div className="color-item" style={{ backgroundColor: '#22c55e' }}>
+    绿色
+  </div>
+  <div className="color-item" style={{ backgroundColor: '#eab308' }}>
+    黄色
+  </div>
+  <div className="color-item" style={{ backgroundColor: '#e11d48' }}>
+    红色
+  </div>
+</div>
+
+## ✨ 特性
+
+<div className="feature-grid">
+  <div className="feature-item">
+    <h3 className="feature-title">响应式设计</h3>
+    <p>所有组件都适配各种屏幕尺寸，从移动设备到大屏幕显示器</p>
+  </div>
+  <div className="feature-item">
+    <h3 className="feature-title">TypeScript支持</h3>
+    <p>完整的TypeScript类型定义，提供更好的开发体验和代码提示</p>
+  </div>
+  <div className="feature-item">
+    <h3 className="feature-title">主题定制</h3>
+    <p>易于定制的主题系统，可以根据品牌需求调整样式</p>
+  </div>
+  <div className="feature-item">
+    <h3 className="feature-title">丰富的组件</h3>
+    <p>提供常用的UI组件，从基础的按钮到复杂的数据展示组件</p>
+  </div>
+</div>
+
+## 🚀 开始使用
+
+安装 Rainbow UI：
+
+```bash
+npm install rainbow-ui
+# 或者
+yarn add rainbow-ui
+```
+
+导入和使用组件：
+
+```jsx
+import { Button, Alert } from 'rainbow-ui';
+
+function App() {
+  return (
+    <div>
+      <Alert type="info">欢迎使用 Rainbow UI!</Alert>
+      <Button type="primary">开始使用</Button>
+    </div>
+  );
+}
+```
+
+## 📚 组件文档
+
+浏览左侧导航栏查看所有可用的组件和示例。每个组件都有详细的文档和示例代码。
+
+## 🤝 贡献指南
+
+我们欢迎社区贡献！如果你想参与 Rainbow UI 的开发，请查看我们的 GitHub 仓库。

@@ -76,4 +76,19 @@ info addon
 ### 3.27今日总结
 
 ### 3.28
+
 omit
+
+### 遇到的问题
+
+1.form表单的input框，可能type 是文字，可能是checkbox，可能是radio单选框 。
+有三个变数：value的名称，更新回调的名称，获取事件对象的值。
+
+### 4.3
+
+- 进行了一半Form组件的开发**
+- 定制化storybook主题**
+- 完成Divider组件的开发
+- 完成Paginator组件的开发
+- 完成Image组件的开发
+- 完成Loading组件的开发

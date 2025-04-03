@@ -1,0 +1,263 @@
+@import '../../styles/variables';
+@import '../../styles/mixin';
+
+// Image 组件基础样式
+.rainbow-image-container {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  box-sizing: border-box;
+  min-width: 50px;
+  min-height: 50px;
+  background-color: $gray-100;
+  border-radius: $border-radius;
+  transition: all 0.3s ease;
+  cursor: pointer;
+
+  // 设置默认尺寸
+  width: 100%;
+  height: auto;
+
+  // 图片加载完成样式
+  .rainbow-image {
+    width: 100%;
+    height: 100%;
+    vertical-align: middle;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      // 悬停时轻微放大效果
+      transform: scale(1.02);
+    }
+  }
+
+  // 加载中样式
+  &.rainbow-image-loading {
+    .rainbow-image-placeholder {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: $gray-500;
+      font-size: $font-size-base;
+      background-color: $gray-100;
+
+      .rainbow-image-loading-icon {
+        font-size: 1.5rem;
+        color: $primary;
+
+        // 添加渐变色效果
+        @keyframes spinner-gradient {
+          0% {
+            color: $purple;
+          }
+          16.67% {
+            color: $indigo;
+          }
+          33.33% {
+            color: $blue;
+          }
+          50% {
+            color: $cyan;
+          }
+          66.67% {
+            color: $green;
+          }
+          83.33% {
+            color: $yellow;
+          }
+          100% {
+            color: $red;
+          }
+        }
+
+        animation: spinner-gradient 3s linear infinite;
+      }
+    }
+  }
+
+  // 加载失败样式
+  &.rainbow-image-error {
+    .rainbow-image-error-content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      color: $gray-600;
+      font-size: $font-size-sm;
+      background-color: $gray-100;
+
+      .rainbow-image-error-icon {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .rainbow-icon {
+          font-size: 1.8rem;
+          margin-bottom: 0.5rem;
+          opacity: 0.7;
+          color: $danger;
+        }
+      }
+    }
+  }
+}
+
+// 图片预览模态框
+.rainbow-image-preview-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba($black, 0.85);
+  z-index: 1050;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  // 预览内容区
+  .rainbow-image-preview-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    // 图片容器
+    .rainbow-image-preview-img-container {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+
+      // 预览图片
+      .rainbow-image-preview-img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        transition: transform 0.3s cubic-bezier(0.2, 0, 0.2, 1);
+        user-select: none;
+      }
+    }
+
+    // 工具栏
+    .rainbow-image-preview-toolbar {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      background-color: rgba($black, 0.6);
+      border-radius: 24px;
+      padding: 8px 16px;
+      backdrop-filter: blur(8px);
+      z-index: 1051;
+
+      // 操作按钮
+      .rainbow-image-preview-action {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 36px;
+        height: 36px;
+        margin: 0 4px;
+        color: $white;
+        font-size: 1rem;
+        background-color: transparent;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: all 0.2s ease;
+
+        &:hover {
+          background-color: rgba($white, 0.2);
+        }
+
+        &:focus {
+          outline: none;
+        }
+
+        &.close-action {
+          margin-left: 12px;
+          background-color: rgba($danger, 0.3);
+
+          &:hover {
+            background-color: rgba($danger, 0.5);
+          }
+        }
+      }
+
+      // 图片索引
+      .rainbow-image-preview-index {
+        color: $white;
+        font-size: 0.9rem;
+        margin: 0 10px;
+        user-select: none;
+      }
+    }
+  }
+}
+
+// 响应式设计
+@media (max-width: 768px) {
+  .rainbow-image-preview-overlay {
+    .rainbow-image-preview-content {
+      .rainbow-image-preview-toolbar {
+        bottom: 10px;
+        padding: 6px 12px;
+
+        .rainbow-image-preview-action {
+          width: 32px;
+          height: 32px;
+          margin: 0 2px;
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
+}
+
+// 彩虹主题渐变动画
+@keyframes rainbow-gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+// 暗黑模式适配
+@media (prefers-color-scheme: dark) {
+  .rainbow-image-container {
+    background-color: $gray-800;
+
+    &.rainbow-image-loading {
+      .rainbow-image-placeholder {
+        background-color: $gray-800;
+        color: $gray-400;
+      }
+    }
+
+    &.rainbow-image-error {
+      .rainbow-image-error-content {
+        background-color: $gray-800;
+        color: $gray-400;
+      }
+    }
+  }
+}

@@ -1,0 +1,435 @@
+@import '../../styles/variables';
+@import '../../styles/mixin';
+
+// 分页器基础样式
+.rainbow-paginator {
+  display: flex;
+  align-items: center;
+  font-family: $font-family-base;
+  margin: 1rem 0;
+  user-select: none;
+
+  // 分页器整体容器样式
+  .paginator-container {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    border: 1px solid $gray-300;
+    border-radius: $border-radius;
+    background-color: $gray-50;
+    box-shadow: 0 1px 3px rgba($black, 0.05);
+  }
+
+  // 分页器列表
+  .paginator-list {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    align-items: center;
+  }
+
+  // 分页器项目基础样式
+  .paginator-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 0.25rem;
+    border-radius: $border-radius;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    border: 1px solid $gray-200;
+    background-color: $white;
+    color: $gray-700;
+
+    // 页码按钮中的文本
+    span {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: $font-weight-medium;
+    }
+
+    // 鼠标悬停样式 - 只改变边框颜色和加粗
+    &:hover:not(.active):not(.disabled) {
+      border-color: $indigo;
+      border-width: 2px;
+    }
+  }
+
+  // 省略号样式
+  .paginator-ellipsis {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 0.25rem;
+    cursor: default;
+    border: none;
+    background-color: transparent;
+
+    span {
+      letter-spacing: 1px;
+      color: $gray-500;
+    }
+  }
+
+  // 禁用状态
+  .paginator-item.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
+    background-color: $gray-100;
+    border-color: $gray-200;
+    color: $gray-400;
+    box-shadow: none;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba($white, 0.4);
+      border-radius: inherit;
+    }
+  }
+
+  // 分页器总数显示
+  .paginator-total {
+    margin-right: 1rem;
+    color: $gray-600;
+  }
+
+  // 快速跳转样式
+  .paginator-jumper {
+    display: flex;
+    align-items: center;
+    margin-left: 1rem;
+
+    .paginator-jumper-text {
+      color: $gray-600;
+      margin: 0 0.25rem;
+    }
+
+    .paginator-jumper-input {
+      width: 3rem;
+      height: 2rem;
+      border: 1px solid $gray-300;
+      border-radius: $border-radius;
+      text-align: center;
+      margin: 0 0.25rem;
+      transition: border-color 0.2s;
+
+      &:focus {
+        outline: none;
+        border-color: $indigo;
+        box-shadow: 0 0 0 2px rgba($indigo, 0.2);
+      }
+
+      &:disabled {
+        background-color: $gray-100;
+        cursor: not-allowed;
+      }
+    }
+
+    .paginator-jumper-button {
+      height: 2rem;
+      padding: 0 0.75rem;
+      background-color: $indigo;
+      color: white;
+      border: none;
+      border-radius: $border-radius;
+      cursor: pointer;
+      transition: background-color 0.2s;
+
+      &:hover {
+        background-color: darken($indigo, 10%);
+      }
+
+      &:focus {
+        outline: none;
+        box-shadow: 0 0 0 2px rgba($indigo, 0.2);
+      }
+
+      &:disabled {
+        background-color: $gray-400;
+        cursor: not-allowed;
+        opacity: 0.6;
+      }
+    }
+  }
+}
+
+// 不同尺寸的分页器样式
+.paginator-sm {
+  font-size: $font-size-sm;
+
+  .paginator-item {
+    min-width: 2rem;
+    height: 2rem;
+
+    span {
+      padding: 0 0.5rem;
+    }
+  }
+
+  .paginator-container {
+    padding: 0.25rem 0.5rem;
+  }
+}
+
+.paginator-md {
+  font-size: $font-size-base;
+
+  .paginator-item {
+    min-width: 2.5rem;
+    height: 2.5rem;
+
+    span {
+      padding: 0 0.75rem;
+    }
+  }
+
+  .paginator-container {
+    padding: 0.5rem 0.75rem;
+  }
+}
+
+.paginator-lg {
+  font-size: $font-size-lg;
+
+  .paginator-item {
+    min-width: 3rem;
+    height: 3rem;
+
+    span {
+      padding: 0 1rem;
+    }
+  }
+
+  .paginator-container {
+    padding: 0.75rem 1rem;
+  }
+}
+
+// 不同主题风格的分页器
+
+// Simple主题 - 简约风格
+.paginator-simple {
+  .paginator-container {
+    background-color: $white;
+    border-color: $gray-200;
+  }
+
+  .paginator-item {
+    background-color: $white;
+    border: 1px solid $gray-200;
+    color: $gray-700;
+
+    &:hover:not(.active):not(.disabled) {
+      border-color: $indigo;
+      border-width: 2px;
+    }
+
+    &.active {
+      background-color: rgba($indigo, 0.1);
+      color: $indigo;
+      border-color: $indigo;
+      border-width: 2px;
+    }
+
+    &.paginator-prev,
+    &.paginator-next,
+    &.paginator-first,
+    &.paginator-last {
+      background-color: $gray-50;
+
+      &:hover:not(.disabled) {
+        border-color: $indigo;
+        border-width: 2px;
+      }
+    }
+
+    &.disabled {
+      background-color: $gray-100;
+      color: $gray-400;
+      border-color: $gray-200;
+    }
+  }
+
+  .paginator-jumper-button {
+    background-color: $indigo;
+
+    &:hover {
+      background-color: darken($indigo, 10%);
+    }
+
+    &:disabled {
+      background-color: $gray-400;
+    }
+  }
+}
+
+// Colorful主题 - 多彩风格
+.paginator-colorful {
+  .paginator-container {
+    background-color: $white;
+    border-color: $gray-200;
+    box-shadow: 0 2px 6px rgba($black, 0.05);
+  }
+
+  .paginator-item {
+    background-color: $white;
+    border: 1px solid $gray-200;
+    color: $gray-700;
+
+    &:hover:not(.active):not(.disabled) {
+      border-color: $blue;
+      border-width: 2px;
+    }
+
+    &.active {
+      background-color: rgba($blue, 0.1);
+      color: $blue;
+      border-color: $blue;
+      border-width: 2px;
+    }
+
+    &:nth-child(5n + 1) {
+      &:hover:not(.active):not(.disabled) {
+        border-color: $purple;
+        border-width: 2px;
+      }
+
+      &.active {
+        background-color: rgba($purple, 0.15);
+        border-color: $purple;
+        color: $purple;
+        border-width: 2px;
+      }
+    }
+
+    &:nth-child(5n + 2) {
+      &:hover:not(.active):not(.disabled) {
+        border-color: $pink;
+        border-width: 2px;
+      }
+
+      &.active {
+        background-color: rgba($pink, 0.15);
+        border-color: $pink;
+        color: $pink;
+      }
+    }
+
+    &:nth-child(5n + 3) {
+      &:hover:not(.active):not(.disabled) {
+        border-color: $cyan;
+        border-width: 2px;
+      }
+
+      &.active {
+        background-color: rgba($cyan, 0.15);
+        border-color: $cyan;
+        color: $cyan;
+      }
+    }
+
+    &:nth-child(5n + 4) {
+      &:hover:not(.active):not(.disabled) {
+        border-color: $green;
+        border-width: 2px;
+      }
+
+      &.active {
+        background-color: rgba($green, 0.15);
+        border-color: $green;
+        color: $green;
+      }
+    }
+
+    &:nth-child(5n + 5) {
+      &:hover:not(.active):not(.disabled) {
+        border-color: $orange;
+        border-width: 2px;
+      }
+
+      &.active {
+        background-color: rgba($orange, 0.15);
+        border-color: $orange;
+        color: $orange;
+      }
+    }
+
+    &.paginator-prev,
+    &.paginator-next {
+      &:hover:not(.disabled) {
+        border-color: $indigo;
+        border-width: 2px;
+      }
+    }
+
+    &.paginator-first,
+    &.paginator-last {
+      &:hover:not(.disabled) {
+        border-color: $teal;
+        border-width: 2px;
+      }
+    }
+
+    &.disabled {
+      background-color: $gray-100;
+      color: $gray-400;
+      border-color: $gray-200;
+      box-shadow: none;
+
+      &::after {
+        background-color: rgba($white, 0.5);
+      }
+    }
+  }
+
+  .paginator-jumper-button {
+    background: linear-gradient(45deg, $indigo, $purple);
+
+    &:hover {
+      background: linear-gradient(45deg, darken($indigo, 5%), darken($purple, 5%));
+    }
+
+    &:disabled {
+      background: $gray-400;
+    }
+  }
+}
+
+// 禁用状态的分页器
+.paginator-disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+
+  .paginator-container {
+    background-color: $gray-100;
+    border-color: $gray-200;
+  }
+
+  .paginator-item {
+    cursor: not-allowed;
+    pointer-events: none;
+    background-color: $gray-100 !important;
+    color: $gray-400 !important;
+    border-color: $gray-200 !important;
+    box-shadow: none !important;
+  }
+
+  .paginator-jumper-input {
+    background-color: $gray-100;
+    border-color: $gray-200;
+  }
+
+  .paginator-jumper-button {
+    background-color: $gray-400 !important;
+    background-image: none !important;
+  }
+}

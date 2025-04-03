@@ -1,0 +1,320 @@
+@import '../../styles/variables';
+@import '../../styles/mixin';
+
+// 分割线的基础样式
+.rainbow-divider {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: $gray-700;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+  list-style: none;
+  font-feature-settings: 'tnum';
+  display: flex;
+  clear: both;
+
+  // 水平分割线
+  &.rainbow-divider-horizontal {
+    display: flex;
+    align-items: center;
+    margin: 16px 0;
+    width: 100%;
+    min-width: 100%;
+    height: 3px;
+    border-top: 0;
+    border-bottom: 0;
+  }
+
+  // 垂直分割线
+  &.rainbow-divider-vertical {
+    position: relative;
+    top: -0.06em;
+    display: inline-block;
+    align-self: stretch;
+    margin: 0 8px;
+    width: 1px;
+    min-width: 1px;
+    height: auto;
+    vertical-align: middle;
+    border-left: 0;
+    border-right: 0;
+  }
+
+  // 彩虹风格分割线
+  &.rainbow-divider-rainbow {
+    &.rainbow-divider-horizontal {
+      background: linear-gradient(
+        90deg,
+        $purple 0%,
+        $indigo 16.66%,
+        $blue 33.33%,
+        $cyan 50%,
+        $green 66.66%,
+        $yellow 83.33%,
+        $red 100%
+      );
+      background-size: 200% 100%;
+      animation: rainbow-gradient-shift 10s linear infinite alternate;
+    }
+
+    &.rainbow-divider-vertical {
+      background: linear-gradient(
+        180deg,
+        $purple 0%,
+        $indigo 16.66%,
+        $blue 33.33%,
+        $cyan 50%,
+        $green 66.66%,
+        $yellow 83.33%,
+        $red 100%
+      );
+      background-size: 100% 200%;
+      animation: rainbow-gradient-shift-vertical 10s linear infinite alternate;
+    }
+  }
+
+  // 简约风格分割线
+  &.rainbow-divider-simple {
+    &.rainbow-divider-horizontal {
+      background-color: $gray-300;
+    }
+
+    &.rainbow-divider-vertical {
+      background-color: $gray-300;
+    }
+
+    &::before,
+    &::after {
+      position: relative;
+      top: 50%;
+      width: 50%;
+      border-top: 0;
+      background-color: $gray-300;
+      transform: translateY(50%);
+      content: '';
+    }
+  }
+
+  // Normal风格分割线
+  &.rainbow-divider-normal {
+    &.rainbow-divider-horizontal {
+      background-color: rgba(10, 3, 53, 0.95);
+    }
+
+    &.rainbow-divider-vertical {
+      background-color: rgba(10, 3, 53, 0.95);
+    }
+
+    &::before,
+    &::after {
+      position: relative;
+      top: 50%;
+      width: 50%;
+      border-top: 0;
+      background-color: rgba(10, 3, 53, 0.95);
+      transform: translateY(50%);
+      content: '';
+    }
+  }
+
+  // 虚线样式
+  &.rainbow-divider-dashed {
+    &.rainbow-divider-horizontal {
+      background: none;
+      border-top: 1px dashed $gray-300;
+    }
+
+    &.rainbow-divider-vertical {
+      background: none;
+      border-left: 1px dashed $gray-300;
+    }
+
+    // 彩虹虚线样式
+    &.rainbow-divider-rainbow {
+      &.rainbow-divider-horizontal {
+        background: none;
+        border-image: linear-gradient(
+          90deg,
+          $purple 0%,
+          $indigo 16.66%,
+          $blue 33.33%,
+          $cyan 50%,
+          $green 66.66%,
+          $yellow 83.33%,
+          $red 100%
+        );
+        border-image-slice: 1;
+        border-width: 1px 0 0 0;
+        border-style: dashed;
+      }
+
+      &.rainbow-divider-vertical {
+        background: none;
+        border-image: linear-gradient(
+          180deg,
+          $purple 0%,
+          $indigo 16.66%,
+          $blue 33.33%,
+          $cyan 50%,
+          $green 66.66%,
+          $yellow 83.33%,
+          $red 100%
+        );
+        border-image-slice: 1;
+        border-width: 0 0 0 1px;
+        border-style: dashed;
+      }
+    }
+
+    // Normal风格虚线样式
+    &.rainbow-divider-normal {
+      &.rainbow-divider-horizontal {
+        background: none;
+        border-top: 1px dashed rgba(10, 3, 53, 0.95);
+      }
+
+      &.rainbow-divider-vertical {
+        background: none;
+        border-left: 1px dashed rgba(10, 3, 53, 0.95);
+      }
+    }
+
+    // 处理带虚线的文本
+    &.rainbow-divider-simple {
+      &::before,
+      &::after {
+        background: none;
+        border-top: 1px dashed $gray-300;
+      }
+    }
+
+    &.rainbow-divider-normal {
+      &::before,
+      &::after {
+        background: none;
+        border-top: 1px dashed rgba(10, 3, 53, 0.95);
+      }
+    }
+  }
+
+  // 带文本的分割线
+  &.rainbow-divider-with-text {
+    margin: 16px 0;
+    color: $text-primary;
+    font-weight: $font-weight-medium;
+    font-size: $font-size-base;
+    white-space: nowrap;
+    text-align: center;
+    border-top: 0;
+    border-bottom: 0;
+
+    // 处理带文本的彩虹样式
+    &.rainbow-divider-rainbow {
+      &::before,
+      &::after {
+        position: relative;
+        top: 50%;
+        width: 50%;
+        border-top: 0;
+        border-bottom: 0;
+        transform: translateY(50%);
+        content: '';
+        background: linear-gradient(
+          90deg,
+          $purple 0%,
+          $indigo 16.66%,
+          $blue 33.33%,
+          $cyan 50%,
+          $green 66.66%,
+          $yellow 83.33%,
+          $red 100%
+        );
+        background-size: 200% 100%;
+        animation: rainbow-gradient-shift 10s linear infinite alternate;
+      }
+    }
+
+    // 处理带文本的简约样式
+    &.rainbow-divider-simple {
+      &::before,
+      &::after {
+        position: relative;
+        top: 50%;
+        width: 50%;
+        border-top: 0;
+        background-color: $gray-300;
+        transform: translateY(50%);
+        content: '';
+      }
+    }
+
+    // 处理带文本的Normal样式
+    &.rainbow-divider-normal {
+      &::before,
+      &::after {
+        position: relative;
+        top: 50%;
+        width: 50%;
+        border-top: 0;
+        background-color: rgba(10, 3, 53, 0.95);
+        transform: translateY(50%);
+        content: '';
+      }
+    }
+
+    // 文本对齐方式
+    &.rainbow-divider-with-text-left {
+      &::before {
+        width: 5%;
+      }
+      &::after {
+        width: 95%;
+      }
+    }
+
+    &.rainbow-divider-with-text-right {
+      &::before {
+        width: 95%;
+      }
+      &::after {
+        width: 5%;
+      }
+    }
+
+    &.rainbow-divider-with-text-center {
+      &::before {
+        width: 50%;
+      }
+      &::after {
+        width: 50%;
+      }
+    }
+
+    // 文本容器
+    .rainbow-divider-inner-text {
+      display: inline-block;
+      padding: 0 1em;
+      color: inherit;
+    }
+  }
+}
+
+// 彩虹渐变动画
+@keyframes rainbow-gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes rainbow-gradient-shift-vertical {
+  0% {
+    background-position: 50% 0%;
+  }
+  100% {
+    background-position: 50% 100%;
+  }
+}
