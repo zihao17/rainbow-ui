@@ -12,7 +12,7 @@
   "builds": [
     {
       "src": "package.json",
-      "use": "@vercel/react",
+      "use": "@vercel/static",
       "config": {
         "buildCommand": "npm run build",
         "outputDirectory": "build"
