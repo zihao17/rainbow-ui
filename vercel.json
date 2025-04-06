@@ -1,0 +1,30 @@
+{
+  "routes": [
+    {
+      "src": "/storybook/(.*)",
+      "dest": "/storybook-static/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/build/$1"
+    }
+  ],
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/react",
+      "config": {
+        "buildCommand": "npm run build",
+        "outputDirectory": "build"
+      }
+    },
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "buildCommand": "npm run build-storybook",
+        "outputDirectory": "storybook-static"
+      }
+    }
+  ]
+}
