@@ -1,0 +1,214 @@
+.rainbow-form {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 14px;
+  line-height: 1.5715;
+  list-style: none;
+
+  // 表单布局样式
+  &.rainbow-form-horizontal {
+    .rainbow-row {
+      display: flex;
+      flex-flow: row wrap;
+    }
+  }
+
+  &.rainbow-form-vertical {
+    .rainbow-row {
+      flex-direction: column;
+      align-items: flex-start;
+
+      .rainbow-form-item-label {
+        text-align: left;
+        margin-bottom: 8px;
+      }
+    }
+  }
+
+  &.rainbow-form-inline {
+    display: flex;
+    flex-wrap: wrap;
+
+    .rainbow-row {
+      flex: none;
+      flex-wrap: nowrap;
+      margin-right: 16px;
+      margin-bottom: 8px;
+    }
+  }
+
+  // 带必填标记的样式
+  &.rainbow-form-required-mark {
+    .rainbow-form-item-required {
+      color: #ff4d4f;
+      margin-right: 4px;
+      font-size: 14px;
+      font-family: SimSun, sans-serif;
+    }
+  }
+
+  // 可选模式的必填标记
+  &.rainbow-form-required-mark-optional {
+    .rainbow-form-item-label > label::after {
+      display: inline-block;
+      margin-left: 4px;
+      color: #bfbfbf;
+      content: '(可选)';
+    }
+  }
+
+  // 不显示冒号的样式
+  &.rainbow-form-no-colon {
+    .rainbow-form-item-colon {
+      display: none;
+    }
+  }
+
+  // 标签文本换行
+  &.rainbow-form-label-wrap {
+    .rainbow-form-item-label > label {
+      white-space: normal;
+    }
+  }
+}
+
+// 表单行样式
+.rainbow-row {
+  position: relative;
+  margin-bottom: 24px;
+  font-size: 14px;
+
+  &.rainbow-row-no-label {
+    .rainbow-form-item-control {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+  }
+
+  &.has-error {
+    .rainbow-form-item-explain {
+      color: #ff4d4f;
+    }
+  }
+
+  &.has-feedback {
+    .rainbow-form-item-content {
+      position: relative;
+    }
+  }
+}
+
+// 表单标签样式
+.rainbow-form-item-label {
+  display: inline-block;
+  flex-grow: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-align: right;
+  vertical-align: middle;
+
+  > label {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    height: 32px;
+    color: rgba(0, 0, 0, 0.85);
+    font-size: 14px;
+  }
+
+  &.rainbow-form-item-label-left {
+    text-align: left;
+  }
+}
+
+// 表单项内容样式
+.rainbow-form-item-control {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+// 表单项内容区域
+.rainbow-form-item-content {
+  display: flex;
+  flex-direction: column;
+  min-height: 32px;
+}
+
+// 表单项解释信息
+.rainbow-form-item-explain {
+  clear: both;
+  min-height: 24px;
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 14px;
+  transition: color 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+
+  &.rainbow-form-item-explain-error {
+    color: #ff4d4f;
+  }
+
+  &.rainbow-form-item-explain-warning {
+    color: #faad14;
+  }
+}
+
+// 表单项反馈图标
+.rainbow-form-item-feedback-icon {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  z-index: 1;
+  width: 24px;
+  height: 24px;
+  margin-top: -12px;
+  font-size: 14px;
+  line-height: 24px;
+  text-align: center;
+  visibility: visible;
+  pointer-events: none;
+
+  &.rainbow-form-item-feedback-icon-success {
+    color: #52c41a;
+  }
+
+  &.rainbow-form-item-feedback-icon-warning {
+    color: #faad14;
+  }
+
+  &.rainbow-form-item-feedback-icon-error {
+    color: #ff4d4f;
+  }
+
+  &.rainbow-form-item-feedback-icon-validating {
+    color: #1890ff;
+  }
+}
+
+// 表单提交区域样式
+.rainbow-form-submit-area {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 24px;
+
+  .rainbow-form-horizontal & {
+    margin-left: 16.67%;
+  }
+
+  .rainbow-form-inline & {
+    margin-left: 0;
+  }
+}
+
+// 网格布局支持
+@for $i from 1 through 24 {
+  .rainbow-col-#{$i} {
+    flex: 0 0 percentage(math.div($i, 24));
+    max-width: percentage(math.div($i, 24));
+  }
+
+  .rainbow-col-offset-#{$i} {
+    margin-left: percentage(math.div($i, 24));
+  }
+}

@@ -13,7 +13,17 @@ module.exports = {
       version: 'detect',
     },
   },
-  extends: ['eslint:recommended', 'plugin:react/recommended', 'plugin:react-hooks/recommended', 'plugin:@typescript-eslint/recommended', 'plugin:@typescript-eslint/eslint-recommended', 'plugin:import/errors', 'plugin:import/warnings', 'plugin:import/typescript', 'plugin:storybook/recommended'],
+  extends: [
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:react-hooks/recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:@typescript-eslint/eslint-recommended',
+    'plugin:import/errors',
+    'plugin:import/warnings',
+    'plugin:import/typescript',
+    'plugin:storybook/recommended',
+  ],
   rules: {
     // 自定义规则
     'react/react-in-jsx-scope': 'off', // React 17之后不需要导入React
@@ -22,12 +32,19 @@ module.exports = {
       'warn',
       { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
     ], // 未使用的变量，以_开头的参数和变量除外
-    '@typescript-eslint/no-explicit-any': 'warn', // 禁止使用any类型
+    '@typescript-eslint/no-explicit-any': 'off', // 关闭禁止使用any类型的警告
     'import/order': [
       'off', // 关闭导入顺序检查
     ],
   },
-  ignorePatterns: ['node_modules/', 'build/', 'dist/', '*.config.js', '.eslintrc.js'],
+  ignorePatterns: [
+    'node_modules/',
+    'build/',
+    'dist/',
+    '*.config.js',
+    '.eslintrc.js',
+    'src/components/Form/form.stories.tsx',
+  ],
   env: {
     browser: true,
     node: true,

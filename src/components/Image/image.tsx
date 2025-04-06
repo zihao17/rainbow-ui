@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import Icon from '../Icon/icon';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
+import { createPortal } from 'react-dom';
 
 library.add(fas);
 
@@ -233,15 +234,16 @@ const Image: FC<ImageProps> = (props) => {
                 )}
             </div>
 
-            {/* 预览组件 */}
-            {showPreview && (
+            {/* 使用 Portal 将预览组件渲染到 body 末尾 */}
+            {showPreview && createPortal(
                 <ImagePreview
                     visible={showPreview}
                     src={src}
                     onClose={closePreview}
                     images={previewGroup?.images}
                     current={previewGroup?.current}
-                />
+                />,
+                document.body
             )}
         </>
     );
@@ -257,9 +259,19 @@ const ImagePreview: FC<PreviewProps> = ({ visible, src, onClose, images, current
     const [isMoving, setIsMoving] = useState<boolean>(false);
     const [position, setPosition] = useState({ x: 0, y: 0 });
     const [startPos, setStartPos] = useState({ x: 0, y: 0 });
+    const [isInitialLoad, setIsInitialLoad] = useState<boolean>(true);
 
     // 预览图片源
     const previewSrc = images ? images[currentIndex] : src;
+
+    // 当点击查看新图片时，设置初始加载状态为true
+    useEffect(() => {
+        setIsInitialLoad(true);
+        const timer = setTimeout(() => {
+            setIsInitialLoad(false);
+        }, 300);
+        return () => clearTimeout(timer);
+    }, [visible]);
 
     // 处理键盘事件
     useEffect(() => {
@@ -318,6 +330,10 @@ const ImagePreview: FC<PreviewProps> = ({ visible, src, onClose, images, current
         setScale(1);
         setRotate(0);
         setPosition({ x: 0, y: 0 });
+        setIsInitialLoad(true);
+        setTimeout(() => {
+            setIsInitialLoad(false);
+        }, 300);
     };
 
     // 图片拖动相关函数
@@ -364,7 +380,8 @@ const ImagePreview: FC<PreviewProps> = ({ visible, src, onClose, images, current
                         alt="预览图片"
                         style={{
                             transform: `translate(${position.x}px, ${position.y}px) scale(${scale}) rotate(${rotate}deg)`,
-                            cursor: isMoving ? 'grabbing' : 'grab'
+                            cursor: isMoving ? 'grabbing' : 'grab',
+                            animation: isInitialLoad ? undefined : 'none'
                         }}
                     />
                 </div>

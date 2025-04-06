@@ -30,7 +30,7 @@ const AlertDemo: React.FC = () => {
                     危险
                 </Button>
 
-                <Button onClick={() => setShowWarningAlert(true)}>
+                <Button onClick={() => setShowWarningAlert(true)} btnType={ButtonType.Warning}>
                     警告
                 </Button>
 

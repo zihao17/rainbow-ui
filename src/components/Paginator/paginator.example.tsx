@@ -15,24 +15,15 @@ export const PaginatorExample: React.FC = () => {
     return (
         <div className="paginator-examples">
 
-                <h5>基础分页器</h5>
-                <div className="example-item">
-                    <Paginator
-                        current={currentPage}
-                        total={total}
-                        pageSize={pageSize}
-                        onChange={handlePageChange}
-                        showTotal={(total, range) => `显示 ${range[0]}-${range[1]} 条，共 ${total} 条`}
-                    />
-                </div>
 
-                <div className="example-item">
-                    <h5>中号分页器（默认）</h5>
-                    <Paginator
-                        total={100}
-                        size={PaginatorSize.Medium}
-                    />
-                </div>
+
+            <div className="example-item">
+                <h5>中号分页器（默认）</h5>
+                <Paginator
+                    total={100}
+                    size={PaginatorSize.Medium}
+                />
+            </div>
 
             <section>
                 <div className="example-item">
@@ -78,17 +69,6 @@ export const PaginatorExample: React.FC = () => {
                 </div>
             </section>
 
-            <section>
-                <h5>页码较多的情况</h5>
-                <div className="example-item">
-                    <Paginator
-                        total={5000}
-                        pageSize={20}
-                        showQuickJumper
-                        showFirstLastButtons
-                    />
-                </div>
-            </section>
 
             <section>
                 <h5>禁用状态</h5>
