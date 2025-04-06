@@ -51,9 +51,9 @@ const preview: Preview = {
             sort: 'requiredFirst', // 必需参数优先显示
         },
         // 操作配置
-        actions: {
-            argTypesRegex: '^on[A-Z].*'
-        },
+        // actions: {
+        //     argTypesRegex: '^on[A-Z].*'
+        // },
         // 自定义背景选项
         backgrounds: backgrounds,
         // 自定义视口设置

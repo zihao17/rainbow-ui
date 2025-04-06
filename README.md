@@ -86,9 +86,16 @@ omit
 
 ### 4.3
 
-- 进行了一半Form组件的开发**
-- 定制化storybook主题**
+- 进行了一半Form组件的开发\*\*
+- 定制化storybook主题\*\*
 - 完成Divider组件的开发
 - 完成Paginator组件的开发
 - 完成Image组件的开发
 - 完成Loading组件的开发
+
+### 4.6
+
+- 完成Form组件
+- 完善App.tsx主页的样式
+- 完善storybook文档
+- 待办:过渡动画的样式,upload拖拽上传.

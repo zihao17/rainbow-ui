@@ -4,8 +4,39 @@ import Loading, { LoadingProps } from './loading';
 import Button from '../Button';
 
 export default {
-    title: 'Components/Loading',
+    title: 'Components/Loading 加载',
     component: Loading,
+    tags: ['autodocs'],
+    parameters: {
+        docs: {
+            description: {
+                component: `
+加载组件，用于展示加载中的状态，支持全屏加载、包裹内容等多种模式。
+
+## 引入方式
+
+\`\`\`jsx
+import { Loading } from 'rainbow-ui'
+\`\`\`
+
+## 基本用法
+
+\`\`\`jsx
+// 基础加载
+<Loading isLoading={true} text="加载中..." />
+
+// 全屏加载
+<Loading isLoading={true} fullscreen={true} withMask={true} text="处理中..." />
+
+// 包裹内容
+<Loading isLoading={loading} withMask={true} text="加载中...">
+  <div>被包裹的内容</div>
+</Loading>
+\`\`\`
+            `,
+            },
+        },
+    },
     argTypes: {
         isLoading: { control: 'boolean' },
         fullscreen: { control: 'boolean' },

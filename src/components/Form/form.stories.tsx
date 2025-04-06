@@ -9,7 +9,7 @@ import Select from '../Select'
 import { CustomRule } from './useStore'
 
 const meta: Meta<typeof Form> = {
-  title: '第十一章:Form 组件',
+  title: 'Components/Form 表单',
   id: 'Form',
   component: Form,
   subcomponents: { 'Item': Item },
@@ -20,10 +20,38 @@ const meta: Meta<typeof Form> = {
       </div>
     ),
   ],
+  tags: ['autodocs'],
   parameters: {
     docs: {
       source: {
         type: "code",
+      },
+      description: {
+        component: `
+表单组件，支持异步校验、自定义校验规则、动态表单项等功能。
+
+## 引入方式
+
+\`\`\`jsx
+import { Form, Item } from 'rainbow-ui'
+\`\`\`
+
+## 基本用法
+
+\`\`\`jsx
+<Form onFinish={(values) => console.log(values)}>
+  <Item label='用户名' name='name' rules={[{ type: 'string', required: true, min: 3 }]}>
+    <Input />
+  </Item>
+  <Item label='密码' name='password' rules={[{ type: 'string', required: true, min: 6 }]}>
+    <Input type="password" />
+  </Item>
+  <div className='form-submit-area'>
+    <Button type="submit" btnType={ButtonType.Primary}>登录</Button>
+  </div>
+</Form>
+\`\`\`
+      `,
       },
     }
   }

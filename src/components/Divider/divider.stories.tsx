@@ -7,6 +7,36 @@ import Icon from '../Icon/icon';
 const meta: Meta<typeof Divider> = {
     title: 'Components/Divider 分割线',
     component: Divider,
+    tags: ['autodocs'],
+    parameters: {
+        layout: 'centered',
+        docs: {
+            description: {
+                component: `
+分割线组件，用于分隔内容区域，支持水平和垂直两种类型。
+
+## 引入方式
+
+\`\`\`jsx
+import { Divider } from 'rainbow-ui'
+\`\`\`
+
+## 基本用法
+
+\`\`\`jsx
+// 基础水平分割线
+<Divider />
+
+// 带文本的分割线
+<Divider>文本内容</Divider>
+
+// 垂直分割线
+<Divider direction={DividerDirection.Vertical} />
+\`\`\`
+        `,
+            },
+        },
+    },
 };
 
 export default meta;

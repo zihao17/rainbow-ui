@@ -19,7 +19,7 @@ interface CarProps {
 
 // 组件文档信息
 const meta: Meta<typeof AutoComplete> = {
-    title: 'Components/AutoComplete',
+    title: 'Components/AutoComplete 自动补全',
     component: AutoComplete,
     parameters: {
         layout: 'centered',

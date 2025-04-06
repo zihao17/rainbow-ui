@@ -13,11 +13,54 @@ const checkFileSize = (file: File) => {
 
 // 定义组件元数据
 export default {
-    title: 'Components/Upload',
+    title: 'Components/Upload 上传',
     component: Upload,
     tags: ['autodocs'],
     parameters: {
         layout: 'centered',
+        docs: {
+            description: {
+                component: `
+文件上传组件，支持多种自定义功能，如文件大小限制、文件重命名、自定义上传等。
+
+## 引入方式
+
+\`\`\`jsx
+import { Upload } from 'rainbow-ui'
+\`\`\`
+
+## 基本用法
+
+\`\`\`jsx
+// 基础上传
+<Upload
+  action="https://your-api-url.com/upload"
+  onChange={(file) => console.log(file)}
+  onSuccess={(data, file) => console.log('上传成功', data, file)}
+  onError={(err) => console.log('上传失败', err)}
+/>
+
+// 带文件验证的上传
+<Upload
+  action="https://your-api-url.com/upload"
+  beforeUpload={(file) => {
+    const isLt2M = file.size / 1024 / 1024 < 2;
+    if (!isLt2M) {
+      alert('文件必须小于2MB!');
+    }
+    return isLt2M;
+  }}
+/>
+
+// 文件拖拽上传
+<Upload
+  action="https://your-api-url.com/upload"
+  drag
+/>
+\`\`\`
+            `,
+            },
+        },
     },
 } as Meta<typeof Upload>
 

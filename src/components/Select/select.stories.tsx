@@ -4,7 +4,7 @@ import React from 'react';
 
 // 组件文档信息
 const meta: Meta<typeof Select> = {
-    title: 'Components/Select',
+    title: 'Components/Select 选择器',
     component: Select,
     parameters: {
         layout: 'centered', // 全屏布局方式，居中

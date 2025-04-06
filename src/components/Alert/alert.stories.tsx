@@ -6,7 +6,7 @@ import React from 'react';
 
 // 组件文档信息
 const meta: Meta<typeof Alert> = {
-    title: 'Components/Alert',
+    title: 'Components/Alert 提示框',
     component: Alert,
     parameters: {
         layout: 'centered',

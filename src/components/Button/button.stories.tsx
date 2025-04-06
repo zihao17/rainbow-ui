@@ -5,7 +5,7 @@ import { withInfo } from '@storybook/addon-info';
 
 // 组件文档信息
 const meta: Meta<typeof Button> = {
-    title: 'Components/Button',
+    title: 'Components/Button 按钮',
     component: Button,
     parameters: {
         layout: 'centered', // 全屏布局方式，居中

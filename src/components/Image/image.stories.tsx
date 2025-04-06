@@ -6,6 +6,47 @@ const meta: Meta<typeof Image> = {
     title: 'Components/Image 图片',
     component: Image,
     tags: ['autodocs'],
+    parameters: {
+        docs: {
+            description: {
+                component: `
+图片组件，支持懒加载、预览、失败回退等功能。
+
+## 引入方式
+
+\`\`\`jsx
+import { Image } from 'rainbow-ui'
+\`\`\`
+
+## 基本用法
+
+\`\`\`jsx
+// 基础图片
+<Image
+  src="https://example.com/image.jpg"
+  alt="示例图片"
+  width={500}
+  height={300}
+/>
+
+// 带预览功能的图片
+<Image
+  src="https://example.com/image.jpg"
+  alt="示例图片"
+  preview={true}
+/>
+
+// 懒加载图片
+<Image
+  src="https://example.com/image.jpg"
+  alt="示例图片"
+  lazy={true}
+/>
+\`\`\`
+            `,
+            },
+        },
+    },
     argTypes: {
         src: {
             control: 'text',

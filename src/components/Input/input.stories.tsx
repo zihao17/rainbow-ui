@@ -4,9 +4,40 @@ import { Input, InputProps } from './input';
 import { faSearch, faEye, faUser } from '@fortawesome/free-solid-svg-icons';
 
 export default {
-    title: 'Components/Input',
+    title: 'Components/Input 输入框',
     component: Input,
     tags: ['autodocs'],
+    parameters: {
+        docs: {
+            description: {
+                component: `
+输入框组件，支持不同尺寸、禁用状态、带图标、前缀/后缀等功能。
+
+## 引入方式
+
+\`\`\`jsx
+import { Input } from 'rainbow-ui'
+\`\`\`
+
+## 基本用法
+
+\`\`\`jsx
+// 基础输入框
+<Input placeholder="请输入内容" />
+
+// 禁用状态
+<Input disabled placeholder="禁用状态" />
+
+// 带图标的输入框
+<Input icon={faSearch} placeholder="搜索内容" />
+
+// 带前缀后缀
+<Input prepend="https://" append=".com" placeholder="请输入网站名称" />
+\`\`\`
+            `,
+            },
+        },
+    },
     argTypes: {
         size: {
             options: ['lg', 'sm', undefined],
