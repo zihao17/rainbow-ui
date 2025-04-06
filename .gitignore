@@ -26,3 +26,12 @@ yarn-error.log*
 
 .history/
 /.history
+
+/copy
+/dist
+/lib
+/es
+/types
+/types/index.d.ts
+
+/copy copy
