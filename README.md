@@ -1,14 +1,16 @@
-# Getting Started with Create React App
+# Rainbow-UI 组件库🌈
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 介绍
 
-## `npm start`
+Rainbow-UI 是一个基于 React 的组件库，旨在提供美观、实用的组件，帮助开发者快速构建现代化的 Web 应用。
 
-## github
+## Rainbow-UI Web网站
 
-[text](https://github.com/zihao17/rainbow-ui)
+[rainbow-ui github仓库 | github storage](https://github.com/zihao17/rainbow-ui)
 
-[text](https://rainbow-9bwb6s833-zihao17s-projects.vercel.app/)
+[rainbow-ui 首页 | homepage](https://rainbow-ui-one.vercel.app/)
+
+[rainbow-ui 文档 | document](https://rainbow-ui-storybook.vercel.app/)
 
 ## TODO
 

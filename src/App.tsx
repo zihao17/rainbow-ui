@@ -722,10 +722,10 @@ function App() {
           </div>
           <div className="footer-links">
             <div className="footer-links-group">
-              <h4>资源</h4>
-              <a href="https://github.com/zihao17/rainbow-ui" target="_blank" rel="noreferrer">组件文档</a>
-              <a href="https://github.com/zihao17/rainbow-ui" target="_blank" rel="noreferrer">设计指南</a>
-              <a href="https://github.com/zihao17/rainbow-ui" target="_blank" rel="noreferrer">更新日志</a>
+              <h4>Rainbow-UI网站</h4>
+              <a href="https://rainbow-ui-one.vercel.app/" target="_blank" rel="noreferrer">首页[当前]</a>
+              <a href="https://rainbow-ui-storybook.vercel.app/" target="_blank" rel="noreferrer">组件文档</a>
+              <a href="https://github.com/zihao17/rainbow-ui" target="_blank" rel="noreferrer">github仓库</a>
             </div>
             <div className="footer-links-group">
               <h4>社区</h4>
@@ -733,7 +733,6 @@ function App() {
             </div>
             <div className="footer-links-group">
               <h4>更多</h4>
-              <a href="https://github.com/zihao17/rainbow-ui" target="_blank" rel="noreferrer">案例展示</a>
               <a href="https://github.com/zihao17/rainbow-ui" target="_blank" rel="noreferrer">联系我</a>
             </div>
           </div>
