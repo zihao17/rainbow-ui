@@ -1,6 +1,5 @@
-import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
-import { Input, InputProps } from './input';
+import { fireEvent, render } from '@testing-library/react';
+import Input from './input';
 
 // 模拟 FontAwesome 图标
 jest.mock('@fortawesome/react-fontawesome', () => ({
@@ -26,10 +25,10 @@ describe('测试 Input 组件', () => {
 
     // 尺寸测试
     it('应该渲染不同尺寸的输入框', () => {
-        const { container, rerender } = render(<Input size="lg" />);
+        const { container, rerender } = render(<Input size={Input.Size.Large} />);
         expect(container.firstChild).toHaveClass('input-size-lg');
 
-        rerender(<Input size="sm" />);
+        rerender(<Input size={Input.Size.Small} />);
         expect(container.firstChild).toHaveClass('input-size-sm');
     });
 

@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import React, { ReactElement } from 'react';
-import { AutoComplete, DataSourceType } from './autoComplete';
 import Icon from '../Icon';
+import AutoComplete from './autoComplete';
 
 // 城市数据类型
 interface CityProps {
@@ -31,7 +30,7 @@ const meta: Meta<typeof AutoComplete> = {
 ## 引入方式
 
 \`\`\`jsx
-import { AutoComplete } from 'rainbow-ui'
+import AutoComplete from 'rainbow-ui'
 \`\`\`
 
 ## 基本用法
@@ -92,7 +91,7 @@ type Story = StoryObj<typeof AutoComplete>;
  *
  * ## 引入AutoComplete
  * ```jsx
- * import { AutoComplete } from 'rainbow-ui'
+ * import AutoComplete from 'rainbow-ui'
  * ```
  */
 
@@ -110,11 +109,11 @@ export const Basic: Story = {
         const handleSimpleSearch = (query: string) => {
             return cities
                 .filter(city => city.includes(query))
-                .map(city => ({ value: city }));
+                .map(city => AutoComplete.DataSourceType.create(city));
         };
 
         // 选择处理函数
-        const handleSelect = (item: DataSourceType) => {
+        const handleSelect = (item: any) => {
             console.log('选中项:', item);
         };
 
@@ -156,28 +155,28 @@ export const CustomRender: Story = {
         ];
 
         // 汽车搜索
-        const handleCarSearch = (query: string): DataSourceType[] => {
+        const handleCarSearch = (query: string) => {
             return cars
                 .filter(car =>
                     car.value.includes(query) ||
                     (car.brand as string).toLowerCase().includes(query.toLowerCase())
-                ) as any as DataSourceType[];
+                );
         };
 
         // 自定义渲染汽车选项
-        const renderCarOption = (item: DataSourceType) => {
+        const renderCarOption = (item: any) => {
             return (
                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                     <span>{item.value}</span>
                     <span style={{ color: '#999' }}>
-                        {(item as any).brand} ({(item as any).year})
+                        {item.brand} ({item.year})
                     </span>
                 </div>
             );
         };
 
         // 选择处理函数
-        const handleSelect = (item: DataSourceType) => {
+        const handleSelect = (item: any) => {
             console.log('选中项:', item);
         };
 
@@ -201,33 +200,31 @@ export const CustomRender: Story = {
     },
 };
 
-// 异步搜索
+// 异步查询
 export const AsyncSearch: Story = {
-    name: '异步搜索',
+    name: '异步数据源',
     args: {
-        placeholder: '请输入城市或国家名称',
-        debounceDelay: 500,
+        placeholder: '输入城市名称进行搜索（有1秒延迟）',
     },
     render: (args) => {
         // 城市数据
         const cities = [
-            { value: '北京', population: 21500000, country: '中国' },
-            { value: '上海', population: 24200000, country: '中国' },
-            { value: '广州', population: 15300000, country: '中国' },
-            { value: '深圳', population: 12500000, country: '中国' },
-            { value: '纽约', population: 8400000, country: '美国' },
-            { value: '洛杉矶', population: 4000000, country: '美国' },
-            { value: '芝加哥', population: 2700000, country: '美国' },
-            { value: '东京', population: 13900000, country: '日本' },
-            { value: '伦敦', population: 8900000, country: '英国' },
-            { value: '巴黎', population: 2100000, country: '法国' },
-            { value: '柏林', population: 3600000, country: '德国' },
+            { value: '北京', population: 21.54, country: '中国' },
+            { value: '上海', population: 24.28, country: '中国' },
+            { value: '广州', population: 15.31, country: '中国' },
+            { value: '深圳', population: 13.44, country: '中国' },
+            { value: '纽约', population: 8.4, country: '美国' },
+            { value: '伦敦', population: 8.9, country: '英国' },
+            { value: '东京', population: 13.96, country: '日本' },
+            { value: '巴黎', population: 2.16, country: '法国' },
+            { value: '柏林', population: 3.67, country: '德国' },
+            { value: '悉尼', population: 5.23, country: '澳大利亚' },
         ];
 
         // 异步搜索示例 - 城市
-        const handleAsyncSearch = (query: string): Promise<DataSourceType[]> => {
+        const handleAsyncSearch = (query: string) => {
             // 模拟API请求
-            return new Promise<DataSourceType[]>((resolve) => {
+            return new Promise<any[]>((resolve) => {
                 console.log('Searching for:', query);
 
                 setTimeout(() => {
@@ -235,41 +232,40 @@ export const AsyncSearch: Story = {
                         .filter(city =>
                             city.value.includes(query) ||
                             (city.country as string).toLowerCase().includes(query.toLowerCase())
-                        ) as any as DataSourceType[];
+                        );
                     resolve(results);
                 }, 1000); // 1秒延迟模拟网络请求
             });
         };
 
         // 自定义渲染城市选项
-        const renderCityOption = (item: DataSourceType): ReactElement => {
+        const renderCityOption = (item: any) => {
             return (
                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                     <span>
-                        <Icon icon="map-marker-alt" /> {item.value}
+                        <Icon icon="city" style={{ marginRight: '8px' }} />
+                        {item.value}
                     </span>
                     <span style={{ color: '#999' }}>
-                        {(item as any).country} - {((item as any).population / 1000000).toFixed(1)}百万人口
+                        {item.country} | {item.population}百万人
                     </span>
                 </div>
             );
         };
 
         // 选择处理函数
-        const handleSelect = (item: DataSourceType) => {
+        const handleSelect = (item: any) => {
             console.log('选中项:', item);
         };
 
         return (
             <div style={{ width: '300px' }}>
-                <p style={{ color: '#666', marginBottom: '8px', fontSize: '12px' }}>
-                    输入关键词后有1秒延迟，模拟异步请求
-                </p>
                 <AutoComplete
                     {...args}
                     fetchSuggestions={handleAsyncSearch}
                     onSelect={handleSelect}
                     renderOption={renderCityOption}
+                    debounceDelay={500}
                 />
             </div>
         );
@@ -277,23 +273,24 @@ export const AsyncSearch: Story = {
     parameters: {
         docs: {
             description: {
-                story: '支持异步搜索。`fetchSuggestions` 可以返回一个 Promise，组件会自动处理加载状态，并在请求完成后显示结果。在这个例子中，我们模拟了一个网络请求，有1秒的延迟。',
+                story: '异步获取数据源示例。fetchSuggestions 可以返回一个 Promise，处理异步请求，在请求过程中会显示加载指示器。',
             },
         },
     },
 };
 
-// 键盘导航
-export const KeyboardNavigation: Story = {
-    name: '键盘导航',
+// 带图标提示
+export const WithIcon: Story = {
+    name: '带图标的输入框',
     args: {
-        placeholder: '输入水果名称(可使用键盘上下键选择)',
+        placeholder: '请输入水果名称',
+        icon: 'search',
     },
     render: (args) => {
-        // 水果列表
-        const fruits = ['苹果', '香蕉', '橙子', '葡萄', '西瓜', '草莓', '蓝莓', '芒果', '菠萝', '樱桃'];
+        // 水果数据
+        const fruits = ['苹果', '香蕉', '橙子', '葡萄', '西瓜', '草莓', '蓝莓', '柠檬', '猕猴桃'];
 
-        // 搜索函数
+        // 水果搜索
         const handleFruitSearch = (query: string) => {
             return fruits
                 .filter(fruit => fruit.includes(query))
@@ -301,15 +298,12 @@ export const KeyboardNavigation: Story = {
         };
 
         // 选择处理函数
-        const handleSelect = (item: DataSourceType) => {
+        const handleSelect = (item: any) => {
             console.log('选中项:', item);
         };
 
         return (
             <div style={{ width: '300px' }}>
-                <p style={{ color: '#666', marginBottom: '8px', fontSize: '12px' }}>
-                    输入后，使用键盘上下箭头选择，回车确认
-                </p>
                 <AutoComplete
                     {...args}
                     fetchSuggestions={handleFruitSearch}
@@ -321,7 +315,7 @@ export const KeyboardNavigation: Story = {
     parameters: {
         docs: {
             description: {
-                story: '支持键盘导航。输入关键词后，可以使用键盘上下箭头选择建议项，按回车键确认选择，按ESC键关闭下拉列表。',
+                story: '带搜索图标的输入框。可以设置 icon 属性为 "search" 添加搜索图标。',
             },
         },
     },

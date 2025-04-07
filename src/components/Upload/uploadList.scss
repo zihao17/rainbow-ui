@@ -1,0 +1,48 @@
+.rainbow-ui-upload-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  width: 100%;
+
+  &-item {
+    display: flex;
+    flex-direction: column;
+    margin-top: 5px;
+    position: relative;
+
+    .file-name {
+      display: flex;
+      align-items: center;
+      margin-bottom: 5px;
+
+      .file-icon {
+        margin-right: 8px;
+      }
+
+      &-success {
+        color: #52c41a;
+      }
+
+      &-error {
+        color: #ff4d4f;
+      }
+    }
+
+    .file-status {
+      position: absolute;
+      right: 30px;
+      top: 0;
+    }
+
+    .file-actions {
+      position: absolute;
+      right: 7px;
+      top: 0;
+      cursor: pointer;
+
+      &:hover {
+        color: #1890ff;
+      }
+    }
+  }
+}

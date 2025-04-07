@@ -1,7 +1,5 @@
-import React from 'react';
 import { render, RenderResult } from '@testing-library/react';
 import Divider from './divider';
-import { DividerDirection, DividerStyle, TextAlign } from './divider';
 
 describe('Divider 组件测试', () => {
     let wrapper: RenderResult;
@@ -15,14 +13,14 @@ describe('Divider 组件测试', () => {
     });
 
     it('垂直分割线渲染正确', () => {
-        wrapper = render(<Divider direction={DividerDirection.Vertical} />);
+        wrapper = render(<Divider direction={Divider.Direction.Vertical} />);
         const divider = wrapper.container.querySelector('.rainbow-divider');
         expect(divider).toBeInTheDocument();
         expect(divider).toHaveClass('rainbow-divider-vertical');
     });
 
     it('简约风格分割线渲染正确', () => {
-        wrapper = render(<Divider dividerStyle={DividerStyle.Simple} />);
+        wrapper = render(<Divider dividerStyle={Divider.Style.Simple} />);
         const divider = wrapper.container.querySelector('.rainbow-divider');
         expect(divider).toBeInTheDocument();
         expect(divider).toHaveClass('rainbow-divider-simple');
@@ -47,7 +45,7 @@ describe('Divider 组件测试', () => {
     });
 
     it('带对齐属性的分割线渲染正确', () => {
-        wrapper = render(<Divider textAlign={TextAlign.Left}>左对齐</Divider>);
+        wrapper = render(<Divider textAlign={Divider.TextAlign.Left}>左对齐</Divider>);
         const divider = wrapper.container.querySelector('.rainbow-divider');
         expect(divider).toBeInTheDocument();
         expect(divider).toHaveClass('rainbow-divider-with-text-left');
@@ -57,7 +55,7 @@ describe('Divider 组件测试', () => {
         const color = '#ff6b6b';
         const size = '3px';
         const length = '50%';
-        wrapper = render(<Divider dividerStyle={DividerStyle.Simple} color={color} size={size} length={length} />);
+        wrapper = render(<Divider dividerStyle={Divider.Style.Simple} color={color} size={size} length={length} />);
         const divider = wrapper.container.querySelector('.rainbow-divider');
         expect(divider).toBeInTheDocument();
         expect(divider).toHaveStyle(`background-color: ${color}`);

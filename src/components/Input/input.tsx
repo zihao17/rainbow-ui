@@ -1,17 +1,20 @@
-import React, { FC, ReactElement, InputHTMLAttributes, ChangeEvent } from 'react';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
-import { IconProp } from '@fortawesome/fontawesome-svg-core'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import React, { ChangeEvent, InputHTMLAttributes, ReactElement } from 'react';
 import './_style.scss';
 
 // 输入框尺寸
-type InputSize = 'lg' | 'sm'
+enum InputSize {
+    Large = 'lg',
+    Small = 'sm'
+}
 
 /**
  * Input 输入框组件
  * 页面中最常用的的输入框控件，支持图标、前后缀、大小设置等
  */
-export interface InputProps extends Omit<InputHTMLAttributes<HTMLElement>, 'size'> {
+interface InputProps extends Omit<InputHTMLAttributes<HTMLElement>, 'size'> {
     /**
      * 是否禁用
      */
@@ -45,7 +48,7 @@ export interface InputProps extends Omit<InputHTMLAttributes<HTMLElement>, 'size
  * import { Input } from 'rainbow-ui'
  * ~~~
  */
-export const Input: FC<InputProps> = (props) => {
+const Input = ((props: InputProps) => {
     const { disabled, size, icon, prepend, append, style, ...restProps } = props
     const classes = classNames('rainbow-input-wrapper', {
         [`input-size-${size}`]: size,
@@ -68,7 +71,12 @@ export const Input: FC<InputProps> = (props) => {
             {append && <div className="rainbow-input-append">{append}</div>}
         </div>
     )
-}
+}) as React.FC<InputProps> & {
+    Size: typeof InputSize;
+};
+
+// 将枚举作为静态属性添加到 Input 组件
+Input.Size = InputSize;
 
 export default Input;
 

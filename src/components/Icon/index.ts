@@ -1,4 +1,3 @@
-import Icon, { IconProps, ThemeProps } from './icon';
+import Icon from './icon';
 
-export type { IconProps, ThemeProps };
 export default Icon;

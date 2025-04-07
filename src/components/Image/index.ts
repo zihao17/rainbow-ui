@@ -1,4 +1,3 @@
-import Image, { ImageProps, ObjectFit, PreviewActionType } from './image';
+import Image from './image';
 
-export type { ImageProps, ObjectFit, PreviewActionType };
 export default Image;

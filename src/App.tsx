@@ -1,27 +1,25 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { fas, faEye } from '@fortawesome/free-solid-svg-icons'
-library.add(fas, faEye)
-import axios from 'axios'
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faEye, fas } from '@fortawesome/free-solid-svg-icons';
+import axios from 'axios';
+import { useEffect, useRef, useState } from 'react';
 import './App.css';
-import Button, { ButtonType, ButtonSize } from './components/Button/button';
+import Alert from './components/Alert/alert';
 import AlertDemo from './components/Alert/demo';
-import Alert, { AlertType } from './components/Alert/alert';
-import Menu from './components/Menu/menu';
-import MenuItem from './components/Menu/menuItem';
-import SubMenu from './components/Menu/subMenu';
-import Icon from './components/Icon/icon';
-import Transition from './components/Transition/transition';
-import Input from './components/Input/input';
-import Select, { SelectMode } from './components/Select/select';
-import Upload, { UploadFile } from './components/Upload/upload';
-import Loading from './components/Loading';
-import Image, { ObjectFit } from './components/Image/image';
-import './components/Upload/upload.scss';
-import PaginatorExample from './components/Paginator/paginator.example';
+import Button from './components/Button/button';
+import Divider from './components/Divider/divider';
 import Form from './components/Form/form';
 import Item from './components/Form/formItem';
-import Divider, { DividerDirection, TextAlign } from './components/Divider/divider';
+import Icon from './components/Icon';
+import Image from './components/Image';
+import Input from './components/Input';
+import Loading from './components/Loading';
+import Menu from './components/Menu';
+import PaginatorExample from './components/Paginator/paginator.example';
+import Select from './components/Select';
+import Transition from './components/Transition/transition';
+import Upload, { UploadFile } from './components/Upload';
+import './components/Upload/upload.scss';
+library.add(fas, faEye)
 
 function App() {
   // 添加一个状态来控制直接使用的Alert显示
@@ -155,7 +153,7 @@ function App() {
       <div className='header'>
         <h2>Rainbow UI 组件库展示</h2>
         <p style={{ color: 'white', opacity: 0.9, marginTop: '10px', zIndex: 2, textAlign: 'center' }}>
-        一个拥有15 + 组件的 React 组件库，颜值与实用兼备，持续拓展中...
+          一个拥有15 + 组件的 React 组件库，颜值与实用兼备，持续拓展中...
         </p>
       </div>
 
@@ -180,25 +178,25 @@ function App() {
               <div style={{ marginBottom: '15px' }}>
                 <h4 style={{ marginBottom: '10px', fontSize: '0.9rem', color: '#666' }}>按钮尺寸</h4>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', alignItems: 'center' }}>
-                  <Button size={ButtonSize.Small}>小号按钮</Button>
+                  <Button size={Button.Size.Small}>小号按钮</Button>
                   <Button>默认尺寸</Button>
-                  <Button size={ButtonSize.Large}>大号按钮</Button>
+                  <Button size={Button.Size.Large}>大号按钮</Button>
                 </div>
               </div>
 
               <div style={{ marginBottom: '15px' }}>
                 <h4 style={{ marginBottom: '10px', fontSize: '0.9rem', color: '#666' }}>按钮类型</h4>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-                  <Button btnType={ButtonType.Primary}>主要按钮</Button>
-                  <Button btnType={ButtonType.Warning}>警告按钮</Button>
-                  <Button btnType={ButtonType.Danger}>危险按钮</Button>
+                  <Button btnType={Button.Type.Primary}>主要按钮</Button>
+                  <Button btnType={Button.Type.Warning}>警告按钮</Button>
+                  <Button btnType={Button.Type.Danger}>危险按钮</Button>
                   <Button disabled>禁用按钮</Button>
                 </div>
               </div>
 
               <div>
                 <h4 style={{ marginBottom: '10px', fontSize: '0.9rem', color: '#666' }}>链接按钮</h4>
-                <Button btnType={ButtonType.Link} href="https://www.baidu.com" target="_blank">链接按钮</Button>
+                <Button btnType={Button.Type.Link} href="https://www.baidu.com" target="_blank">链接按钮</Button>
               </div>
             </div>
           </div>
@@ -215,19 +213,19 @@ function App() {
                     <span style={{ marginTop: '5px', fontSize: '12px' }}>coffee</span>
                   </div>
                   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    <Icon icon="arrow-down" theme='primary' size='3x' />
+                    <Icon icon="arrow-down" theme={Icon.Theme.Primary} size='3x' />
                     <span style={{ marginTop: '5px', fontSize: '12px' }}>arrow-down</span>
                   </div>
                   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    <Icon icon="arrow-up" theme='warning' size='3x' />
+                    <Icon icon="arrow-up" theme={Icon.Theme.Warning} size='3x' />
                     <span style={{ marginTop: '5px', fontSize: '12px' }}>arrow-up</span>
                   </div>
                   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    <Icon icon="check" theme='success' size='3x' />
+                    <Icon icon="check" theme={Icon.Theme.Success} size='3x' />
                     <span style={{ marginTop: '5px', fontSize: '12px' }}>check</span>
                   </div>
                   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    <Icon icon="times" theme='danger' size='3x' />
+                    <Icon icon="times" theme={Icon.Theme.Danger} size='3x' />
                     <span style={{ marginTop: '5px', fontSize: '12px' }}>times</span>
                   </div>
                 </div>
@@ -241,14 +239,14 @@ function App() {
             <div className='component-content'>
               <AlertDemo />
               <div style={{ marginTop: '15px', textAlign: 'center' }}>
-                <Button btnType={ButtonType.Primary} onClick={() => setShowBasicAlert(true)}>
+                <Button btnType={Button.Type.Primary} onClick={() => setShowBasicAlert(true)}>
                   显示基础 Alert
                 </Button>
                 {showBasicAlert && (
                   <Alert
                     title="这是一个直接使用的 Alert"
                     description="在任何组件中，你都可以通过这种方式使用 Alert 组件"
-                    type={AlertType.Success}
+                    type={Alert.Type.Success}
                     onClose={() => setShowBasicAlert(false)}
                   />
                 )}
@@ -273,15 +271,15 @@ function App() {
 
                 <div>
                   <p style={{ marginBottom: '8px', fontSize: '0.9rem', color: '#666' }}>分割线位置</p>
-                  <Divider textAlign={TextAlign.Left}>左侧</Divider>
-                  <Divider textAlign={TextAlign.Right}>右侧</Divider>
+                  <Divider textAlign={Divider.TextAlign.Left}>左侧</Divider>
+                  <Divider textAlign={Divider.TextAlign.Right}>右侧</Divider>
                 </div>
 
                 <div>
                   <p style={{ marginBottom: '8px', fontSize: '0.9rem', color: '#666' }}>垂直分割线</p>
                   <div style={{ height: '60px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     <span>左侧内容</span>
-                    <Divider direction={DividerDirection.Vertical} />
+                    <Divider direction={Divider.Direction.Vertical} />
                     <span>右侧内容</span>
                   </div>
                 </div>
@@ -300,15 +298,15 @@ function App() {
                 <h4 style={{ marginBottom: '10px', fontSize: '0.9rem', color: '#666' }}>水平菜单</h4>
                 <div className="menu-component">
                   <Menu defaultIndex={0} onSelect={(index) => { console.log(index) }}>
-                    <MenuItem>首页</MenuItem>
-                    <MenuItem>产品</MenuItem>
-                    <MenuItem>关于我们</MenuItem>
-                    <MenuItem disabled>联系我们</MenuItem>
-                    <SubMenu title="下拉菜单">
-                      <MenuItem>产品1</MenuItem>
-                      <MenuItem>产品2</MenuItem>
-                      <MenuItem>产品3</MenuItem>
-                    </SubMenu>
+                    <Menu.Item>首页</Menu.Item>
+                    <Menu.Item>产品</Menu.Item>
+                    <Menu.Item>关于我们</Menu.Item>
+                    <Menu.Item disabled>联系我们</Menu.Item>
+                    <Menu.SubMenu title="下拉菜单">
+                      <Menu.Item>产品1</Menu.Item>
+                      <Menu.Item>产品2</Menu.Item>
+                      <Menu.Item>产品3</Menu.Item>
+                    </Menu.SubMenu>
                   </Menu>
                 </div>
               </div>
@@ -316,15 +314,15 @@ function App() {
               <div>
                 <h4 style={{ marginBottom: '10px', fontSize: '0.9rem', color: '#666' }}>垂直菜单</h4>
                 <div className="menu-component">
-                  <Menu mode="vertical" defaultIndex={0} onSelect={(index) => { console.log(index) }}>
-                    <MenuItem>首页</MenuItem>
-                    <MenuItem>产品</MenuItem>
-                    <MenuItem>关于我们</MenuItem>
-                    <SubMenu title="下拉菜单">
-                      <MenuItem>产品4</MenuItem>
-                      <MenuItem>产品5</MenuItem>
-                      <MenuItem>产品6</MenuItem>
-                    </SubMenu>
+                  <Menu mode={Menu.Mode.Vertical} defaultIndex={0} onSelect={(index) => { console.log(index) }}>
+                    <Menu.Item>首页</Menu.Item>
+                    <Menu.Item>产品</Menu.Item>
+                    <Menu.Item>关于我们</Menu.Item>
+                    <Menu.SubMenu title="下拉菜单">
+                      <Menu.Item>产品4</Menu.Item>
+                      <Menu.Item>产品5</Menu.Item>
+                      <Menu.Item>产品6</Menu.Item>
+                    </Menu.SubMenu>
                   </Menu>
                 </div>
               </div>
@@ -344,9 +342,9 @@ function App() {
                 <div>
                   <p style={{ marginBottom: '8px', fontSize: '0.9rem', color: '#666' }}>不同尺寸</p>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                    <Input size="lg" placeholder="大尺寸输入框" />
+                    <Input size={Input.Size.Large} placeholder="大尺寸输入框" />
                     <Input placeholder="默认尺寸" />
-                    <Input size="sm" placeholder="小尺寸输入框" />
+                    <Input size={Input.Size.Small} placeholder="小尺寸输入框" />
                   </div>
                 </div>
 
@@ -418,7 +416,7 @@ function App() {
                 <div>
                   <p style={{ marginBottom: '8px', fontSize: '0.9rem', color: '#666' }}>多选选择器</p>
                   <Select
-                    mode={SelectMode.Multiple}
+                    mode={Select.Mode.Multiple}
                     options={selectOptions}
                     defaultValue={['option1', 'option3']}
                     onChange={(values, selectedOptions) => console.log('多选值变化:', values, selectedOptions)}
@@ -449,7 +447,7 @@ function App() {
             <div className='component-title'>过渡动画组件</div>
             <div className='component-content'>
               <div style={{ textAlign: 'center', marginBottom: '15px' }}>
-                <Button btnType={ButtonType.Primary} onClick={() => setShow(!show)}>
+                <Button btnType={Button.Type.Primary} onClick={() => setShow(!show)}>
                   {show ? '隐藏内容' : '显示内容'}
                 </Button>
               </div>
@@ -476,7 +474,7 @@ function App() {
               <div style={{ marginBottom: '20px' }}>
                 <h4 style={{ marginBottom: '10px', fontSize: '0.9rem', color: '#666' }}>基础加载</h4>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
-                  <Button btnType={ButtonType.Primary} onClick={handleBasicLoading}>
+                  <Button btnType={Button.Type.Primary} onClick={handleBasicLoading}>
                     显示加载
                   </Button>
                   <div style={{ minWidth: '120px' }}>
@@ -487,7 +485,7 @@ function App() {
 
               <div style={{ marginBottom: '20px' }}>
                 <h4 style={{ marginBottom: '10px', fontSize: '0.9rem', color: '#666' }}>全屏加载</h4>
-                <Button btnType={ButtonType.Primary} onClick={handleFullscreenLoading}>
+                <Button btnType={Button.Type.Primary} onClick={handleFullscreenLoading}>
                   显示全屏加载 (3秒)
                 </Button>
               </div>
@@ -539,7 +537,7 @@ function App() {
                   drag
                 >
                   <div className="upload-area">
-                    <Icon icon="upload" size="2x" theme="secondary" />
+                    <Icon icon="upload" size="2x" theme={Icon.Theme.Secondary} />
                     <p style={{ margin: '10px 0', color: '#666' }}>拖拽文件到这里上传</p>
                     <p style={{ fontSize: '0.8rem', color: '#999' }}>或点击此区域选择文件</p>
                   </div>
@@ -571,7 +569,7 @@ function App() {
                       alt="图片适配方式"
                       width={150}
                       height={100}
-                      objectFit={ObjectFit.Contain}
+                      objectFit={Image.ObjectFit.Contain}
                       borderRadius="4px"
                     />
                     <p style={{ fontSize: '0.8rem', marginTop: '5px', color: '#666' }}>适配容器</p>
@@ -644,7 +642,7 @@ function App() {
                           borderRadius: '4px',
                           padding: '20px'
                         }}>
-                          <Icon icon="exclamation-triangle" theme="warning" size="2x" />
+                          <Icon icon="exclamation-triangle" theme={Icon.Theme.Warning} size="2x" />
                           <span style={{ marginTop: '10px', fontSize: '12px' }}>图片加载失败</span>
                         </div>
                       }
@@ -701,7 +699,7 @@ function App() {
                     <a href="#" style={{ fontSize: '0.85rem', color: '#1982c4', textDecoration: 'none' }}>忘记密码?</a>
                   </div>
                   <div style={{ textAlign: 'center', marginTop: '10px' }}>
-                    <Button type="submit" btnType={ButtonType.Primary} style={{ width: '100%' }}>登录</Button>
+                    <Button type="submit" btnType={Button.Type.Primary} style={{ width: '100%' }}>登录</Button>
                   </div>
                 </Form>
               </div>
@@ -800,9 +798,9 @@ const FormWithMethods = () => {
         <Input placeholder="请输入邮箱" />
       </Item>
       <div style={{ textAlign: 'center', marginTop: '20px' }}>
-        <Button onClick={handleValidate} btnType={ButtonType.Primary} style={{ marginRight: '8px' }}>验证</Button>
-        <Button onClick={handleFill} btnType={ButtonType.Default} style={{ marginRight: '8px' }}>填充</Button>
-        <Button onClick={handleReset} btnType={ButtonType.Danger}>重置</Button>
+        <Button onClick={handleValidate} btnType={Button.Type.Primary} style={{ marginRight: '8px' }}>验证</Button>
+        <Button onClick={handleFill} btnType={Button.Type.Default} style={{ marginRight: '8px' }}>填充</Button>
+        <Button onClick={handleReset} btnType={Button.Type.Danger}>重置</Button>
       </div>
     </Form>
   );
@@ -904,7 +902,7 @@ const RegistrationForm = () => {
         </div>
       </Item>
       <div style={{ textAlign: 'center', marginTop: '20px' }}>
-        <Button type="submit" btnType={ButtonType.Primary}>注册</Button>
+        <Button type="submit" btnType={Button.Type.Primary}>注册</Button>
       </div>
     </Form>
   );

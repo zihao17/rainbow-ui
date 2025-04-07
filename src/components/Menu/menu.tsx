@@ -1,8 +1,14 @@
-import React, { useState, createContext } from 'react'
-import classnames from 'classnames'
-import { MenuItemProps } from './menuItem'
+import classnames from 'classnames';
+import React, { createContext, useState } from 'react';
+import { MenuItemProps } from './menuItem';
+import type { SubMenuProps } from './subMenu';
 
-type MenuMode = 'horizontal' | 'vertical'
+// 将 MenuMode 类型改为枚举
+enum MenuMode {
+    Horizontal = 'horizontal',
+    Vertical = 'vertical'
+}
+
 type SelectCallback = (selectedIndex: string | number) => void
 
 export interface MenuProps { //  定义MenuProps接口，用于定义Menu组件的属性
@@ -31,12 +37,12 @@ export const MenuContext = createContext<IMenuContext>({ index: 0 })
 // 默认属性值
 const defaultProps: Partial<MenuProps> = {
     defaultIndex: 0,
-    mode: 'horizontal',
+    mode: MenuMode.Horizontal,
     className: '',
     style: {}
 }
 
-const Menu: React.FC<MenuProps> = (props) => { //  导出一个名为Menu的React函数组件，接受一个MenuProps类型的props参数
+const Menu = ((props) => { //  导出一个名为Menu的React函数组件，接受一个MenuProps类型的props参数
     // 合并默认属性和传入的属性
     const finalProps = { ...defaultProps, ...props } as MenuProps
     const {
@@ -62,8 +68,8 @@ const Menu: React.FC<MenuProps> = (props) => { //  导出一个名为Menu的Reac
     }
     // 设置菜单类名
     const classes = classnames('rainbow-menu', className, {
-        'menu-vertical': mode === 'vertical',
-        'menu-horizontal': mode !== 'vertical', // 默认为水平
+        'menu-vertical': mode === MenuMode.Vertical,
+        'menu-horizontal': mode !== MenuMode.Vertical, // 默认为水平
     })
 
     const renderChildren = () => {
@@ -87,6 +93,13 @@ const Menu: React.FC<MenuProps> = (props) => { //  导出一个名为Menu的Reac
             </MenuContext.Provider>
         </ul>
     )
-}
+}) as React.FC<MenuProps> & {
+    Mode: typeof MenuMode;
+    Item: React.FC<MenuItemProps>;
+    SubMenu: React.FC<SubMenuProps>;
+};
+
+// 将枚举作为静态属性添加到 Menu 组件
+Menu.Mode = MenuMode;
 
 export default Menu

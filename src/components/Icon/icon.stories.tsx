@@ -1,10 +1,14 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import Icon, { ThemeProps } from './icon';
-import React from 'react';
 import {
-    faCheckSquare, faCoffee, faUser, faBars,
-    faSearch, faHome, faHeart, faStar
+    faBars,
+    faCheckSquare, faCoffee,
+    faHeart,
+    faHome,
+    faSearch,
+    faStar,
+    faUser
 } from '@fortawesome/free-solid-svg-icons';
+import type { Meta, StoryObj } from '@storybook/react';
+import Icon from './icon';
 
 // 组件文档信息
 const meta: Meta<typeof Icon> = {
@@ -27,8 +31,8 @@ import { faCheckSquare, faCoffee } from '@fortawesome/free-solid-svg-icons'
 ## 基本用法
 
 \`\`\`jsx
-<Icon icon={faCheckSquare} theme="primary" />
-<Icon icon={faCoffee} theme="danger" />
+<Icon icon={faCheckSquare} theme={Icon.Theme.Primary} />
+<Icon icon={faCoffee} theme={Icon.Theme.Danger} />
 \`\`\`
         `,
             },
@@ -76,7 +80,7 @@ type Story = StoryObj<typeof Icon>;
  * ```
  * ## 使用Icon
  * ```jsx
- * <Icon icon={faCheckSquare} theme="primary" />
+ * <Icon icon={faCheckSquare} theme={Icon.Theme.Primary} />
  * ```
  */
 
@@ -110,14 +114,14 @@ export const Themes: Story = {
     args: {},
     render: () => (
         <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
-            <Icon icon={faHome} theme="primary" />
-            <Icon icon={faHome} theme="secondary" />
-            <Icon icon={faHome} theme="success" />
-            <Icon icon={faHome} theme="info" />
-            <Icon icon={faHome} theme="warning" />
-            <Icon icon={faHome} theme="danger" />
-            <Icon icon={faHome} theme="light" />
-            <Icon icon={faHome} theme="dark" />
+            <Icon icon={faHome} theme={Icon.Theme.Primary} />
+            <Icon icon={faHome} theme={Icon.Theme.Secondary} />
+            <Icon icon={faHome} theme={Icon.Theme.Success} />
+            <Icon icon={faHome} theme={Icon.Theme.Info} />
+            <Icon icon={faHome} theme={Icon.Theme.Warning} />
+            <Icon icon={faHome} theme={Icon.Theme.Danger} />
+            <Icon icon={faHome} theme={Icon.Theme.Light} />
+            <Icon icon={faHome} theme={Icon.Theme.Dark} />
         </div>
     ),
     parameters: {
@@ -158,9 +162,9 @@ export const Animation: Story = {
     args: {},
     render: () => (
         <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
-            <Icon icon={faHeart} theme="danger" pulse />
-            <Icon icon={faStar} theme="warning" spin />
-            <Icon icon={faSearch} theme="primary" beat />
+            <Icon icon={faHeart} theme={Icon.Theme.Danger} pulse />
+            <Icon icon={faStar} theme={Icon.Theme.Warning} spin />
+            <Icon icon={faSearch} theme={Icon.Theme.Primary} beat />
         </div>
     ),
     parameters: {

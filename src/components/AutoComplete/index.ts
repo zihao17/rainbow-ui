@@ -1,4 +1,3 @@
-import { AutoComplete, AutoCompleteProps, DataSourceType } from './autoComplete';
+import AutoComplete from './autoComplete';
 
-export type { AutoCompleteProps, DataSourceType };
 export default AutoComplete;

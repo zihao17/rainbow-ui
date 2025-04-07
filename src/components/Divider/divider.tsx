@@ -1,28 +1,28 @@
-import React, { FC, ReactNode } from 'react';
 import classNames from 'classnames';
+import React, { ReactNode } from 'react';
 
 // 定义分割线方向枚举
-export enum DividerDirection {
+enum DividerDirection {
     Horizontal = 'horizontal', // 水平方向
     Vertical = 'vertical'      // 垂直方向
 }
 
 // 定义分割线样式枚举
-export enum DividerStyle {
+enum DividerStyle {
     Rainbow = 'rainbow',   // 彩虹渐变风格
     Simple = 'simple',     // 简约风格
     Normal = 'normal'      // 正常风格
 }
 
 // 文本位置枚举
-export enum TextAlign {
+enum TextAlign {
     Left = 'left',
     Center = 'center',
     Right = 'right'
 }
 
 // 分割线组件Props接口
-export interface DividerProps {
+interface DividerProps {
     /** 分割线方向，水平或垂直 */
     direction?: DividerDirection;
     /** 分割线样式，彩虹或简约 */
@@ -63,7 +63,7 @@ export interface DividerProps {
  * <Divider dividerStyle="rainbow" />
  * ```
  */
-const Divider: FC<DividerProps> = (props) => {
+const Divider = ((props: DividerProps) => {
     const {
         direction = DividerDirection.Horizontal,
         dividerStyle = DividerStyle.Rainbow,
@@ -102,6 +102,16 @@ const Divider: FC<DividerProps> = (props) => {
             )}
         </div>
     );
+}) as React.FC<DividerProps> & {
+    Direction: typeof DividerDirection;
+    Style: typeof DividerStyle;
+    TextAlign: typeof TextAlign;
 };
 
+// 将枚举作为静态属性添加到 Divider 组件
+Divider.Direction = DividerDirection;
+Divider.Style = DividerStyle;
+Divider.TextAlign = TextAlign;
+
+export type { DividerProps };
 export default Divider;

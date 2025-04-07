@@ -1,8 +1,5 @@
-import React from 'react'
-import { render, fireEvent, RenderResult, cleanup } from '@testing-library/react'
+import { cleanup, fireEvent, render, RenderResult } from '@testing-library/react'
 import Menu, { MenuProps } from './menu'
-import MenuItem from './menuItem'
-import SubMenu from './subMenu'
 
 const testProps: MenuProps = {
     defaultIndex: 0,
@@ -13,19 +10,19 @@ const testProps: MenuProps = {
 const testVeritcalProps: MenuProps = {
     defaultIndex: 0,
     onSelect: jest.fn(),
-    mode: 'vertical',
+    mode: Menu.Mode.Vertical,
 }
 
 const generateMenu = (props: MenuProps) => {
     return (
         <Menu {...props}>
-            <MenuItem>active</MenuItem>
-            <MenuItem disabled>disabled</MenuItem>
-            <MenuItem>333</MenuItem>
-            <SubMenu title="下拉菜单">
-                <MenuItem>下拉选项1</MenuItem>
-                <MenuItem>下拉选项2</MenuItem>
-            </SubMenu>
+            <Menu.Item>active</Menu.Item>
+            <Menu.Item disabled>disabled</Menu.Item>
+            <Menu.Item>333</Menu.Item>
+            <Menu.SubMenu title="下拉菜单">
+                <Menu.Item>下拉选项1</Menu.Item>
+                <Menu.Item>下拉选项2</Menu.Item>
+            </Menu.SubMenu>
         </Menu>
     )
 }
@@ -43,7 +40,7 @@ describe('测试Menu组件', () => {
     it('应该根据默认属性正确渲染Menu和MenuItem', () => {
         expect(menuElement).toBeInTheDocument()
         expect(menuElement).toHaveClass('rainbow-menu test')
-        // 现在有4个一级菜单项（3个MenuItem + 1个SubMenu）
+        // 现在有4个一级菜单项（3个Menu.Item + 1个Menu.SubMenu）
         expect(menuElement.querySelectorAll(':scope > .menu-item').length).toEqual(4)
         expect(activeElement).toHaveClass('menu-item is-active')
         expect(disabledElement).toHaveClass('menu-item is-disabled')

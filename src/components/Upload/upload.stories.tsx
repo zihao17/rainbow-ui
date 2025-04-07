@@ -1,7 +1,7 @@
-import React from 'react'
 import { action } from '@storybook/addon-actions'
-import { Upload } from './upload'
 import { Meta, StoryObj } from '@storybook/react'
+import Icon from '../Icon'
+import Upload from './upload'
 
 const checkFileSize = (file: File) => {
     if (Math.round(file.size / 1024) > 500) {
@@ -96,6 +96,29 @@ export const WithFileRename: Story = {
                 beforeUpload={filePromise}
                 onSuccess={(data, file) => console.log('上传成功，文件名:', file.name)}
             />
+        </div>
+    )
+}
+
+// 拖拽上传组件示例
+export const WithDragger: Story = {
+    render: () => (
+        <div>
+            <h3>拖拽上传示例</h3>
+            <p>将文件拖拽到区域内即可上传</p>
+            <Upload
+                action="https://run.mocky.io/v3/14d6ced0-58d1-4498-ac1a-9c83f4b2b4fc"
+                onChange={file => console.log('文件状态变化:', file.name)}
+                onRemove={file => console.log(`移除文件: ${file.name}`)}
+                name="file"
+                drag
+            >
+                <div>
+                    <Icon icon="upload" size="2x" theme={Icon.Theme.Secondary} />
+                    <p style={{ margin: '15px 0', color: '#666' }}>拖拽文件到这里上传</p>
+                    <p style={{ fontSize: '0.8rem', color: '#999' }}>或点击此区域选择文件</p>
+                </div>
+            </Upload>
         </div>
     )
 }

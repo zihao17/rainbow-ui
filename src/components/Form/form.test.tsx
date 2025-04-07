@@ -1,11 +1,9 @@
-import React from 'react'
-import { render, fireEvent, screen, waitFor } from '@testing-library/react'
+import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 
+import Button from '../Button/button'
+import Input from '../Input'
 import Form, { FormProps } from './form'
 import Item from './formItem'
-import Input from '../Input'
-import Button from '../Button'
-import { ButtonType } from '../Button/button'
 
 const testProps: FormProps = {
   name: 'test-form',
@@ -52,7 +50,7 @@ describe('testing Form component', () => {
         >
           <Input type='password' />
         </Item>
-        <Button type="submit" btnType={ButtonType.Primary}>Log in</Button>
+        <Button type="submit" btnType={Button.Type.Primary}>Log in</Button>
       </Form>
     )
     const { getByDisplayValue, getByText } = screen

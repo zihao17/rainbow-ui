@@ -12,6 +12,11 @@ module.exports = {
     react: {
       version: 'detect',
     },
+    'import/resolver': {
+      node: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx', '.scss'],
+      },
+    },
   },
   extends: [
     'eslint:recommended',

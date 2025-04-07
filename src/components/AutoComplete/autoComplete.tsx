@@ -1,24 +1,37 @@
-import React, { FC, useState, ChangeEvent, KeyboardEvent, ReactElement, useEffect, useRef } from 'react'
 import classNames from 'classnames'
-import Input, { InputProps } from '../Input'
+import React, { ChangeEvent, KeyboardEvent, ReactElement, useEffect, useRef, useState } from 'react'
+import { useClickOutside, useDebounce } from '../../hooks'
 import Icon from '../Icon'
+import Input from '../Input'
 import Transition from '../Transition'
-import { useDebounce, useClickOutside } from '../../hooks'
 import './autoComplete.scss'
 
-// 数据源类型，可以是字符串数组或对象数组
-export type DataSourceType<T = Record<string, unknown>> = T & { value: string }
+// 获取 Input 组件的 Props 类型
+type InputProps = React.ComponentProps<typeof Input>;
+
+// 定义数据源类型接口
+interface DataSourceObjectType {
+    value: string;
+    [key: string]: any;
+}
+
+// 创建一个 DataSourceObject 常量，可以作为值使用
+const DataSourceObject = {
+    create: <T extends object>(value: string, other?: T): DataSourceObjectType & T => {
+        return { value, ...other } as DataSourceObjectType & T;
+    }
+};
 
 // 组件属性接口
-export interface AutoCompleteProps extends Omit<InputProps, 'onSelect' | 'onChange'> {
+interface AutoCompleteProps extends Omit<InputProps, 'onSelect' | 'onChange'> {
     /**
      * 获取输入建议的函数，可以是同步或异步的
      */
-    fetchSuggestions: (str: string) => DataSourceType[] | Promise<DataSourceType[]>;
+    fetchSuggestions: (str: string) => DataSourceObjectType[] | Promise<DataSourceObjectType[]>;
     /**
      * 选择建议项时触发的回调
      */
-    onSelect?: (item: DataSourceType) => void;
+    onSelect?: (item: DataSourceObjectType) => void;
     /**
      * 输入框内容变化时触发的回调
      */
@@ -26,7 +39,7 @@ export interface AutoCompleteProps extends Omit<InputProps, 'onSelect' | 'onChan
     /**
      * 自定义渲染下拉选项的函数
      */
-    renderOption?: (item: DataSourceType) => ReactElement;
+    renderOption?: (item: DataSourceObjectType) => ReactElement;
     /**
      * 防抖延迟时间（毫秒）
      */
@@ -37,7 +50,7 @@ export interface AutoCompleteProps extends Omit<InputProps, 'onSelect' | 'onChan
  * 自动完成组件
  * 输入框自动完成功能，支持同步和异步数据源，键盘导航，自定义渲染等功能
  */
-export const AutoComplete: FC<AutoCompleteProps> = (props) => {
+const AutoComplete = ((props: AutoCompleteProps) => {
     const {
         fetchSuggestions,
         onSelect,
@@ -50,7 +63,7 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
 
     // 状态管理
     const [inputValue, setInputValue] = useState(value as string)
-    const [suggestions, setSuggestions] = useState<DataSourceType[]>([])
+    const [suggestions, setSuggestions] = useState<DataSourceObjectType[]>([])
     const [loading, setLoading] = useState(false)
     const [highlightIndex, setHighlightIndex] = useState(-1)
     const [showDropdown, setShowDropdown] = useState(false)
@@ -113,7 +126,7 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
     }
 
     // 处理选择建议项
-    const handleSelect = (item: DataSourceType) => {
+    const handleSelect = (item: DataSourceObjectType) => {
         setInputValue(item.value)
         setSuggestions([])
         setShowDropdown(false)
@@ -163,7 +176,7 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
     }
 
     // 渲染下拉选项
-    const renderTemplate = (item: DataSourceType) => {
+    const renderTemplate = (item: DataSourceObjectType) => {
         return renderOption ? renderOption(item) : item.value
     }
 
@@ -212,7 +225,12 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
             {generateDropdown()}
         </div>
     )
-}
+}) as React.FC<AutoCompleteProps> & {
+    DataSourceType: typeof DataSourceObject;
+};
 
-export default AutoComplete
+// 将 DataSourceObject 添加为静态属性
+AutoComplete.DataSourceType = DataSourceObject;
+
+export default AutoComplete;
 

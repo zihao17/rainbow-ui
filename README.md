@@ -100,4 +100,4 @@ omit
 - 完成Form组件
 - 完善App.tsx主页的样式
 - 完善storybook文档
-- 待办:过渡动画的样式,upload拖拽上传.
+- 过渡动画的样式,upload拖拽上传.

@@ -1,8 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import Menu from './menu';
-import MenuItem from './menuItem';
-import SubMenu from './subMenu';
-import React from 'react';
 
 // 组件文档信息
 const meta: Meta<typeof Menu> = {
@@ -18,16 +15,16 @@ const meta: Meta<typeof Menu> = {
 ## 引入方式
 
 \`\`\`jsx
-import { Menu, MenuItem, SubMenu } from 'rainbow-ui'
+import Menu from 'rainbow-ui'
 \`\`\`
 
 ## 基本用法
 
 \`\`\`jsx
 <Menu defaultIndex={0} onSelect={(index) => console.log(index)}>
-  <MenuItem>菜单项一</MenuItem>
-  <MenuItem>菜单项二</MenuItem>
-  <MenuItem>菜单项三</MenuItem>
+  <Menu.Item>菜单项一</Menu.Item>
+  <Menu.Item>菜单项二</Menu.Item>
+  <Menu.Item>菜单项三</Menu.Item>
 </Menu>
 \`\`\`
         `,
@@ -82,14 +79,14 @@ type Story = StoryObj<typeof Menu>;
  * 菜单组件
  * ## 引入Menu
  * ```jsx
- * import { Menu, MenuItem, SubMenu } from 'rainbow-ui'
+ * import Menu from 'rainbow-ui'
  * ```
  * ## 使用Menu
  * ```jsx
  * <Menu defaultIndex={0} onSelect={(index) => console.log(index)}>
- *   <MenuItem>菜单项一</MenuItem>
- *   <MenuItem>菜单项二</MenuItem>
- *   <MenuItem>菜单项三</MenuItem>
+ *   <Menu.Item>菜单项一</Menu.Item>
+ *   <Menu.Item>菜单项二</Menu.Item>
+ *   <Menu.Item>菜单项三</Menu.Item>
  * </Menu>
  * ```
  */
@@ -99,14 +96,15 @@ export const Horizontal: Story = {
     name: '水平菜单',
     args: {
         defaultIndex: 0,
+        mode: Menu.Mode.Horizontal
     },
     render: (args) => (
         <Menu {...args}>
-            <MenuItem>首页</MenuItem>
-            <MenuItem>产品</MenuItem>
-            <MenuItem>服务</MenuItem>
-            <MenuItem>关于我们</MenuItem>
-            <MenuItem disabled>帮助中心</MenuItem>
+            <Menu.Item>首页</Menu.Item>
+            <Menu.Item>产品</Menu.Item>
+            <Menu.Item>服务</Menu.Item>
+            <Menu.Item>关于我们</Menu.Item>
+            <Menu.Item disabled>帮助中心</Menu.Item>
         </Menu>
     ),
     parameters: {
@@ -123,15 +121,15 @@ export const Vertical: Story = {
     name: '垂直菜单',
     args: {
         defaultIndex: 0,
-        mode: 'vertical',
+        mode: Menu.Mode.Vertical,
     },
     render: (args) => (
         <Menu {...args} style={{ width: '200px' }}>
-            <MenuItem>首页</MenuItem>
-            <MenuItem>产品</MenuItem>
-            <MenuItem>服务</MenuItem>
-            <MenuItem>关于我们</MenuItem>
-            <MenuItem disabled>帮助中心</MenuItem>
+            <Menu.Item>首页</Menu.Item>
+            <Menu.Item>产品</Menu.Item>
+            <Menu.Item>服务</Menu.Item>
+            <Menu.Item>关于我们</Menu.Item>
+            <Menu.Item disabled>帮助中心</Menu.Item>
         </Menu>
     ),
     parameters: {
@@ -146,20 +144,22 @@ export const Vertical: Story = {
 // 子菜单
 export const WithSubmenu: Story = {
     name: '子菜单',
-    args: {},
+    args: {
+        mode: Menu.Mode.Horizontal
+    },
     render: () => (
-        <Menu defaultIndex='0' mode='horizontal'>
-            <MenuItem>首页</MenuItem>
-            <SubMenu title="产品">
-                <MenuItem>选项1</MenuItem>
-                <MenuItem>选项2</MenuItem>
-                <MenuItem>选项3</MenuItem>
-            </SubMenu>
-            <SubMenu title="服务">
-                <MenuItem>选项4</MenuItem>
-                <MenuItem>选项5</MenuItem>
-            </SubMenu>
-            <MenuItem>关于我们</MenuItem>
+        <Menu defaultIndex='0' mode={Menu.Mode.Horizontal}>
+            <Menu.Item>首页</Menu.Item>
+            <Menu.SubMenu title="产品">
+                <Menu.Item>选项1</Menu.Item>
+                <Menu.Item>选项2</Menu.Item>
+                <Menu.Item>选项3</Menu.Item>
+            </Menu.SubMenu>
+            <Menu.SubMenu title="服务">
+                <Menu.Item>选项4</Menu.Item>
+                <Menu.Item>选项5</Menu.Item>
+            </Menu.SubMenu>
+            <Menu.Item>关于我们</Menu.Item>
         </Menu>
     ),
     parameters: {
@@ -174,20 +174,22 @@ export const WithSubmenu: Story = {
 // 垂直子菜单
 export const VerticalSubmenu: Story = {
     name: '垂直子菜单',
-    args: {},
+    args: {
+        mode: Menu.Mode.Vertical
+    },
     render: () => (
-        <Menu defaultIndex='0' mode='vertical' style={{ width: '200px' }}>
-            <MenuItem>首页</MenuItem>
-            <SubMenu title="产品">
-                <MenuItem>选项1</MenuItem>
-                <MenuItem>选项2</MenuItem>
-                <MenuItem>选项3</MenuItem>
-            </SubMenu>
-            <SubMenu title="服务">
-                <MenuItem>选项4</MenuItem>
-                <MenuItem>选项5</MenuItem>
-            </SubMenu>
-            <MenuItem>关于我们</MenuItem>
+        <Menu defaultIndex='0' mode={Menu.Mode.Vertical} style={{ width: '200px' }}>
+            <Menu.Item>首页</Menu.Item>
+            <Menu.SubMenu title="产品">
+                <Menu.Item>选项1</Menu.Item>
+                <Menu.Item>选项2</Menu.Item>
+                <Menu.Item>选项3</Menu.Item>
+            </Menu.SubMenu>
+            <Menu.SubMenu title="服务">
+                <Menu.Item>选项4</Menu.Item>
+                <Menu.Item>选项5</Menu.Item>
+            </Menu.SubMenu>
+            <Menu.Item>关于我们</Menu.Item>
         </Menu>
     ),
     parameters: {

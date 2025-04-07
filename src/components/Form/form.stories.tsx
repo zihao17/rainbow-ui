@@ -1,11 +1,10 @@
+import { Meta } from '@storybook/react'
 import React, { useRef } from 'react'
-import { Meta, StoryObj } from '@storybook/react'
+import Button from '../Button'
+import Input from '../Input'
+import Select from '../Select'
 import Form, { IFormRef } from './form'
 import Item from './formItem'
-import Input from '../Input'
-import Button from '../Button'
-import { ButtonType } from '../Button/button'
-import Select from '../Select'
 import { CustomRule } from './useStore'
 
 const meta: Meta<typeof Form> = {
@@ -47,7 +46,7 @@ import { Form, Item } from 'rainbow-ui'
     <Input type="password" />
   </Item>
   <div className='form-submit-area'>
-    <Button type="submit" btnType={ButtonType.Primary}>登录</Button>
+    <Button type="submit" btnType={Button.Type.Primary}>登录</Button>
   </div>
 </Form>
 \`\`\`
@@ -85,7 +84,7 @@ export const ABasicForm = (args: any) => {
         <Input type="password" />
       </Item>
       <div className='viking-form-submit-area'>
-        <Button type="submit" btnType={ButtonType.Primary}>登陆</Button>
+        <Button type="submit" btnType={Button.Type.Primary}>登陆</Button>
       </div>
     </Form>
   )
@@ -131,7 +130,7 @@ export const BRegForm = (args: any) => {
         <span className="agree-text">注册即代表你同意<a href='#'>用户协议</a></span>
       </div>
       <div className='viking-form-submit-area'>
-        <Button type="submit" btnType={ButtonType.Primary}>登陆</Button>
+        <Button type="submit" btnType={Button.Type.Primary}>登陆</Button>
       </div>
     </Form>
   )
@@ -170,7 +169,7 @@ export const CFullForm = (args: any) => {
             <span className="agree-text">注册即代表你同意<a href='#'>用户协议</a></span>
           </div>
           <div className='viking-form-submit-area'>
-            <Button type="submit" btnType={ButtonType.Primary}>登陆 {isSubmitting ? '验证中' : '验证完毕'} {isValid ? '通过😄' : '没通过😢'} </Button>
+            <Button type="submit" btnType={Button.Type.Primary}>登陆 {isSubmitting ? '验证中' : '验证完毕'} {isValid ? '通过😄' : '没通过😢'} </Button>
             <Button type="button" onClick={resetAll}>重置</Button>
           </div>
         </>

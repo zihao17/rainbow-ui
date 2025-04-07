@@ -1,8 +1,8 @@
-import React, { useContext, useState, useRef } from 'react'
 import classnames from 'classnames'
-import { MenuContext } from './menu'
-import { MenuItemProps } from './menuItem'
+import React, { useContext, useRef, useState } from 'react'
 import Icon from '../Icon'
+import Menu, { MenuContext } from './menu'
+import { MenuItemProps } from './menuItem'
 
 export interface SubMenuProps {
   index?: string | number;
@@ -28,14 +28,14 @@ const SubMenu: React.FC<SubMenuProps> = ({ index, title, className, children }) 
   const classes = classnames('menu-item submenu-item', className, {
     'is-active': context.index === index || isChildActive(),
     'is-opened': menuOpen,
-    'is-vertical': context.mode === 'vertical'
+    'is-vertical': context.mode === Menu.Mode.Vertical
   })
 
   // 添加定时器引用
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   // 获取菜单模式，默认为水平模式
-  const isVertical = context.mode === 'vertical'
+  const isVertical = context.mode === Menu.Mode.Vertical
 
   // 添加鼠标事件处理函数
   const handleClick = (e: React.MouseEvent) => {
@@ -111,7 +111,7 @@ const SubMenu: React.FC<SubMenuProps> = ({ index, title, className, children }) 
     <li key={index} className={classes} {...hoverEvents}>
       <div className="submenu-title" {...clickEvents}>
         {title}
-        <Icon icon="angle-down" theme='primary' className='arrow-icon' />
+        <Icon icon="angle-down" theme={Icon.Theme.Primary} className='arrow-icon' />
       </div>
       {renderChildren()}
     </li>

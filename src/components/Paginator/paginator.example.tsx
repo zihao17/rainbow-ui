@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import Paginator, { PaginatorSize, PaginatorTheme } from './index';
+import Paginator from './index';
 
-export const PaginatorExample: React.FC = () => {
+const PaginatorExample: React.FC = () => {
     // 基础分页器示例
     const [currentPage, setCurrentPage] = useState<number>(1);
     const total = 200;
@@ -21,7 +21,7 @@ export const PaginatorExample: React.FC = () => {
                 <h5>中号分页器（默认）</h5>
                 <Paginator
                     total={100}
-                    size={PaginatorSize.Medium}
+                    size={Paginator.Size.Medium}
                 />
             </div>
 
@@ -30,7 +30,7 @@ export const PaginatorExample: React.FC = () => {
                     <h5>多彩风格（默认）</h5>
                     <Paginator
                         total={100}
-                        theme={PaginatorTheme.Colorful}
+                        theme={Paginator.Theme.Colorful}
                         showFirstLastButtons
                     />
                 </div>
@@ -38,7 +38,7 @@ export const PaginatorExample: React.FC = () => {
                     <h5>简约风格</h5>
                     <Paginator
                         total={100}
-                        theme={PaginatorTheme.Simple}
+                        theme={Paginator.Theme.Simple}
                         showFirstLastButtons
                     />
                 </div>
@@ -63,8 +63,8 @@ export const PaginatorExample: React.FC = () => {
                         showQuickJumper
                         showFirstLastButtons
                         showTotal={(total, range) => `第 ${range[0]}-${range[1]} 条 / 共 ${total} 条`}
-                        theme={PaginatorTheme.Colorful}
-                        size={PaginatorSize.Medium}
+                        theme={Paginator.Theme.Colorful}
+                        size={Paginator.Size.Medium}
                     />
                 </div>
             </section>

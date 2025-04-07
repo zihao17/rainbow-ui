@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
 import classNames from 'classnames';
+import React, { useEffect, useRef, useState } from 'react';
 
 // Alert 组件的主题类型
-export enum AlertType {
+enum AlertType {
     Success = 'success',
     Default = 'default',
     Danger = 'danger',
@@ -10,7 +10,7 @@ export enum AlertType {
 }
 
 // Alert 组件的接口定义
-export interface AlertProps {
+interface AlertProps {
     /** 标题 */
     title?: string;
     /** 描述内容 */
@@ -32,7 +32,7 @@ export interface AlertProps {
  * 支持四种主题颜色：success、default、danger、warning
  * 可自动关闭，关闭时间支持自定义
  */
-const Alert: React.FC<AlertProps> = (props) => {
+const Alert = ((props: AlertProps) => {
     const {
         title,
         description,
@@ -113,6 +113,12 @@ const Alert: React.FC<AlertProps> = (props) => {
             )}
         </div>
     );
+}) as React.FC<AlertProps> & {
+    Type: typeof AlertType;
 };
 
+// 将 AlertType 作为静态属性添加到 Alert 组件
+Alert.Type = AlertType;
+
+export type { AlertProps };
 export default Alert;

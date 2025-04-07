@@ -1,14 +1,16 @@
-import React, { FC, useState, useRef, useEffect, CSSProperties, ReactNode } from 'react';
-import classNames from 'classnames';
-import Icon from '../Icon/icon';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
+import classNames from 'classnames';
+import React, { CSSProperties, ReactNode, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
+import Icon from '../Icon/icon';
+import './image.scss';
+import ImagePreview from './imagePreview';
 
 library.add(fas);
 
 // 定义预览操作枚举
-export enum PreviewActionType {
+enum PreviewActionType {
     Zoom = 'zoom',
     Rotate = 'rotate',
     Prev = 'prev',
@@ -17,7 +19,7 @@ export enum PreviewActionType {
 }
 
 // 定义对象适配属性
-export enum ObjectFit {
+enum ObjectFit {
     Fill = 'fill',
     Contain = 'contain',
     Cover = 'cover',
@@ -26,7 +28,7 @@ export enum ObjectFit {
 }
 
 // 图片组件的属性接口
-export interface ImageProps {
+interface ImageProps {
     /** 图片源地址 */
     src: string;
     /** 图片加载失败时的替代文本 */
@@ -94,7 +96,7 @@ interface PreviewProps {
  * />
  * ```
  */
-const Image: FC<ImageProps> = (props) => {
+const Image = ((props: ImageProps) => {
     const {
         src,
         alt,
@@ -247,179 +249,13 @@ const Image: FC<ImageProps> = (props) => {
             )}
         </>
     );
+}) as React.FC<ImageProps> & {
+    ObjectFit: typeof ObjectFit;
+    PreviewActionType: typeof PreviewActionType;
 };
 
-/**
- * 图片预览组件
- */
-const ImagePreview: FC<PreviewProps> = ({ visible, src, onClose, images, current = 0 }) => {
-    const [scale, setScale] = useState<number>(1);
-    const [rotate, setRotate] = useState<number>(0);
-    const [currentIndex, setCurrentIndex] = useState<number>(current);
-    const [isMoving, setIsMoving] = useState<boolean>(false);
-    const [position, setPosition] = useState({ x: 0, y: 0 });
-    const [startPos, setStartPos] = useState({ x: 0, y: 0 });
-    const [isInitialLoad, setIsInitialLoad] = useState<boolean>(true);
-
-    // 预览图片源
-    const previewSrc = images ? images[currentIndex] : src;
-
-    // 当点击查看新图片时，设置初始加载状态为true
-    useEffect(() => {
-        setIsInitialLoad(true);
-        const timer = setTimeout(() => {
-            setIsInitialLoad(false);
-        }, 300);
-        return () => clearTimeout(timer);
-    }, [visible]);
-
-    // 处理键盘事件
-    useEffect(() => {
-        const handleKeyDown = (e: KeyboardEvent) => {
-            switch (e.key) {
-                case 'Escape':
-                    onClose();
-                    break;
-                case 'ArrowLeft':
-                    if (images && images.length > 1) {
-                        handlePrev();
-                    }
-                    break;
-                case 'ArrowRight':
-                    if (images && images.length > 1) {
-                        handleNext();
-                    }
-                    break;
-                case '+':
-                    handleZoomIn();
-                    break;
-                case '-':
-                    handleZoomOut();
-                    break;
-                default:
-                    break;
-            }
-        };
-
-        document.addEventListener('keydown', handleKeyDown);
-        return () => {
-            document.removeEventListener('keydown', handleKeyDown);
-        };
-    }, [currentIndex, images]);
-
-    // 图片操作函数
-    const handleZoomIn = () => setScale(prev => Math.min(prev + 0.5, 5));
-    const handleZoomOut = () => setScale(prev => Math.max(prev - 0.5, 0.5));
-    const handleRotateLeft = () => setRotate(prev => prev - 90);
-    const handleRotateRight = () => setRotate(prev => prev + 90);
-
-    const handlePrev = () => {
-        if (!images || images.length <= 1) return;
-        setCurrentIndex(prev => (prev - 1 + images.length) % images.length);
-        resetImageState();
-    };
-
-    const handleNext = () => {
-        if (!images || images.length <= 1) return;
-        setCurrentIndex(prev => (prev + 1) % images.length);
-        resetImageState();
-    };
-
-    // 重置图片状态
-    const resetImageState = () => {
-        setScale(1);
-        setRotate(0);
-        setPosition({ x: 0, y: 0 });
-        setIsInitialLoad(true);
-        setTimeout(() => {
-            setIsInitialLoad(false);
-        }, 300);
-    };
-
-    // 图片拖动相关函数
-    const handleMouseDown = (e: React.MouseEvent) => {
-        e.preventDefault();
-        setIsMoving(true);
-        setStartPos({ x: e.clientX - position.x, y: e.clientY - position.y });
-    };
-
-    const handleMouseMove = (e: React.MouseEvent) => {
-        if (!isMoving) return;
-        setPosition({
-            x: e.clientX - startPos.x,
-            y: e.clientY - startPos.y
-        });
-    };
-
-    const handleMouseUp = () => {
-        setIsMoving(false);
-    };
-
-    // 双击恢复图片默认状态
-    const handleDoubleClick = () => {
-        resetImageState();
-    };
-
-    return (
-        <div
-            className="rainbow-image-preview-overlay"
-            onClick={onClose}
-        >
-            <div className="rainbow-image-preview-content" onClick={e => e.stopPropagation()}>
-                <div
-                    className="rainbow-image-preview-img-container"
-                    onMouseDown={handleMouseDown}
-                    onMouseMove={handleMouseMove}
-                    onMouseUp={handleMouseUp}
-                    onMouseLeave={handleMouseUp}
-                    onDoubleClick={handleDoubleClick}
-                >
-                    <img
-                        className="rainbow-image-preview-img"
-                        src={previewSrc}
-                        alt="预览图片"
-                        style={{
-                            transform: `translate(${position.x}px, ${position.y}px) scale(${scale}) rotate(${rotate}deg)`,
-                            cursor: isMoving ? 'grabbing' : 'grab',
-                            animation: isInitialLoad ? undefined : 'none'
-                        }}
-                    />
-                </div>
-
-                {/* 预览工具栏 */}
-                <div className="rainbow-image-preview-toolbar">
-                    <button className="rainbow-image-preview-action" onClick={handleZoomIn}>
-                        <Icon icon="search-plus" />
-                    </button>
-                    <button className="rainbow-image-preview-action" onClick={handleZoomOut}>
-                        <Icon icon="search-minus" />
-                    </button>
-                    <button className="rainbow-image-preview-action" onClick={handleRotateLeft}>
-                        <Icon icon="undo" />
-                    </button>
-                    <button className="rainbow-image-preview-action" onClick={handleRotateRight}>
-                        <Icon icon="redo" />
-                    </button>
-                    {images && images.length > 1 && (
-                        <>
-                            <button className="rainbow-image-preview-action" onClick={handlePrev}>
-                                <Icon icon="arrow-left" />
-                            </button>
-                            <span className="rainbow-image-preview-index">
-                                {currentIndex + 1} / {images.length}
-                            </span>
-                            <button className="rainbow-image-preview-action" onClick={handleNext}>
-                                <Icon icon="arrow-right" />
-                            </button>
-                        </>
-                    )}
-                    <button className="rainbow-image-preview-action close-action" onClick={onClose}>
-                        <Icon icon="times" />
-                    </button>
-                </div>
-            </div>
-        </div>
-    );
-};
+// 将枚举作为静态属性添加到 Image 组件
+Image.ObjectFit = ObjectFit;
+Image.PreviewActionType = PreviewActionType;
 
 export default Image;

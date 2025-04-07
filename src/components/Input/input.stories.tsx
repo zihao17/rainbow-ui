@@ -1,7 +1,6 @@
-import React from 'react';
-import { StoryFn, Meta } from '@storybook/react';
-import { Input, InputProps } from './input';
-import { faSearch, faEye, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faSearch, faUser } from '@fortawesome/free-solid-svg-icons';
+import { Meta, StoryFn } from '@storybook/react';
+import Input from './input';
 
 export default {
     title: 'Components/Input 输入框',
@@ -64,10 +63,10 @@ import { Input } from 'rainbow-ui'
             description: '输入框占位文本'
         }
     },
-} as Meta<InputProps>;
+} as Meta<typeof Input>;
 
 // 基础输入框模板
-const Template: StoryFn<InputProps> = (args: InputProps) => <Input {...args} />;
+const Template: StoryFn<typeof Input> = (args) => <Input {...args} />;
 
 // 基础输入框
 export const Default = Template.bind({});
@@ -93,17 +92,17 @@ WithIcon.args = {
 WithIcon.storyName = '带图标的输入框';
 
 // 不同尺寸的输入框
-export const DifferentSizes: StoryFn<InputProps> = () => (
+export const DifferentSizes: StoryFn<typeof Input> = () => (
     <>
-        <Input size="lg" placeholder="大尺寸输入框" style={{ marginBottom: '20px' }} />
+        <Input size={Input.Size.Large} placeholder="大尺寸输入框" style={{ marginBottom: '20px' }} />
         <Input placeholder="默认尺寸输入框" style={{ marginBottom: '20px' }} />
-        <Input size="sm" placeholder="小尺寸输入框" />
+        <Input size={Input.Size.Small} placeholder="小尺寸输入框" />
     </>
 );
 DifferentSizes.storyName = '不同尺寸的输入框';
 
 // 带前缀后缀的输入框
-export const WithAffix: StoryFn<InputProps> = () => (
+export const WithAffix: StoryFn<typeof Input> = () => (
     <>
         <Input prepend="https://" placeholder="请输入域名" style={{ marginBottom: '20px' }} />
         <Input append=".com" placeholder="请输入网站名称" style={{ marginBottom: '20px' }} />
@@ -113,7 +112,7 @@ export const WithAffix: StoryFn<InputProps> = () => (
 WithAffix.storyName = '带前缀后缀的输入框';
 
 // 密码输入框
-export const Password: StoryFn<InputProps> = () => (
+export const Password: StoryFn<typeof Input> = () => (
     <Input type="password" placeholder="请输入密码" icon={faEye} />
 );
 Password.storyName = '密码输入框';

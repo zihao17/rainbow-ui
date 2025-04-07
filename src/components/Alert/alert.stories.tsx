@@ -1,8 +1,7 @@
-import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import Alert, { AlertType, AlertProps } from './alert';
-import Button, { ButtonType, ButtonSize } from '../Button';
-import React from 'react';
+import React, { useState } from 'react';
+import Button from '../Button';
+import Alert from './alert';
 
 // 组件文档信息
 const meta: Meta<typeof Alert> = {
@@ -25,10 +24,10 @@ import { Button } from 'rainbow-ui'
 \`\`\`jsx
 const [showBasicAlert, setShowBasicAlert] = useState(false);
 
-<Button btnType={ButtonType.Primary} onClick={() => setShowBasicAlert(true)}>显示基础 Alert</Button>
+<Button btnType={Button.Type.Primary} onClick={() => setShowBasicAlert(true)}>显示基础 Alert</Button>
 
 {showBasicAlert && (
-    <Alert title="标题" description="内容" type={AlertType.Success} onClose={() => setShowBasicAlert(false)} />
+    <Alert title="标题" description="内容" type={Alert.Type.Success} onClose={() => setShowBasicAlert(false)} />
     )
 }
 \`\`\`
@@ -47,7 +46,7 @@ const [showBasicAlert, setShowBasicAlert] = useState(false);
         type: {
             description: '指定警告提示的样式',
             control: 'select',
-            options: [AlertType.Default, AlertType.Success, AlertType.Warning, AlertType.Danger],
+            options: [Alert.Type.Default, Alert.Type.Success, Alert.Type.Warning, Alert.Type.Danger],
             table: {
                 type: { summary: 'AlertType' },
                 defaultValue: { summary: 'Default' },
@@ -111,10 +110,10 @@ export const InteractiveDemo: Story = {
     },
     render: () => {
         const AlertDemo = () => {
-            const [alerts, setAlerts] = useState<Array<{ id: number; props: AlertProps }>>([]);
+            const [alerts, setAlerts] = useState<Array<{ id: number; props: any }>>([]);
             let nextId = 0;
 
-            const addAlert = (type: AlertType, title: string) => {
+            const addAlert = (type: typeof Alert.Type[keyof typeof Alert.Type], title: string) => {
                 const id = nextId++;
                 setAlerts([
                     ...alerts,
@@ -137,26 +136,26 @@ export const InteractiveDemo: Story = {
                 <div>
                     <div style={{ marginBottom: '16px', display: 'flex', gap: '8px' }}>
                         <Button
-                            btnType={ButtonType.Default}
-                            onClick={() => addAlert(AlertType.Default, '信息提示')}
+                            btnType={Button.Type.Default}
+                            onClick={() => addAlert(Alert.Type.Default, '信息提示')}
                         >
                             显示信息
                         </Button>
                         <Button
-                            btnType={ButtonType.Primary}
-                            onClick={() => addAlert(AlertType.Success, '成功提示')}
+                            btnType={Button.Type.Primary}
+                            onClick={() => addAlert(Alert.Type.Success, '成功提示')}
                         >
                             显示成功
                         </Button>
                         <Button
-                            btnType={ButtonType.Warning}
-                            onClick={() => addAlert(AlertType.Warning, '警告提示')}
+                            btnType={Button.Type.Warning}
+                            onClick={() => addAlert(Alert.Type.Warning, '警告提示')}
                         >
                             显示警告
                         </Button>
                         <Button
-                            btnType={ButtonType.Danger}
-                            onClick={() => addAlert(AlertType.Danger, '错误提示')}
+                            btnType={Button.Type.Danger}
+                            onClick={() => addAlert(Alert.Type.Danger, '错误提示')}
                         >
                             显示错误
                         </Button>
@@ -252,7 +251,7 @@ export const FormSubmitDemo: Story = {
                                 placeholder="输入为空则会提示错误"
                             />
                         </div>
-                        <Button btnType={ButtonType.Primary} size={ButtonSize.Middle} type="submit">
+                        <Button btnType={Button.Type.Primary} size={Button.Size.Middle} type="submit">
                             提交表单
                         </Button>
                     </form>
@@ -261,7 +260,7 @@ export const FormSubmitDemo: Story = {
                         <Alert
                             title="提交成功"
                             description="您的表单已成功提交，我们会尽快处理您的请求。"
-                            type={AlertType.Success}
+                            type={Alert.Type.Success}
                             closable={true}
                             onClose={() => setShowSuccess(false)}
                             duration={0}
@@ -272,7 +271,7 @@ export const FormSubmitDemo: Story = {
                         <Alert
                             title="提交失败"
                             description={errorMessage}
-                            type={AlertType.Danger}
+                            type={Alert.Type.Danger}
                             closable={true}
                             onClose={() => setShowError(false)}
                             duration={0}

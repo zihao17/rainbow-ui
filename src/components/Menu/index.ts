@@ -1,7 +1,10 @@
-import Menu, { MenuProps } from './menu';
-import MenuItem, { MenuItemProps } from './menuItem';
-import SubMenu, { SubMenuProps } from './subMenu';
+import Menu from './menu';
+import MenuItem from './menuItem';
+import SubMenu from './subMenu';
 
-export type { MenuProps, MenuItemProps, SubMenuProps };
-export { MenuItem, SubMenu };
+// 将子组件作为 Menu 的静态属性
+Menu.Item = MenuItem;
+Menu.SubMenu = SubMenu;
+
+// 只导出 Menu 组件
 export default Menu;

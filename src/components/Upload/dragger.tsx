@@ -1,5 +1,5 @@
-import React, { FC, useState, DragEvent } from 'react'
-import classNames from 'classnames'
+import classNames from 'classnames';
+import React, { DragEvent, FC, useState } from 'react';
 
 // 拖拽区域属性接口
 interface DraggerProps {
@@ -29,16 +29,32 @@ export const Dragger: FC<DraggerProps> = (props) => {
     }
 
     // 创建拖拽区域的className
-    const classes = classNames('rainbow-ui-uploader-dragger', {
+    const classes = classNames('rainbow-ui-uploader-dragger', 'upload-area', {
         'is-dragover': dragOver
     })
+
+    // 结合 App.css 中的样式，增强拖拽区域样式
+    const draggerStyle = {
+        border: '2px dashed #e0e0e0',
+        borderRadius: '4px',
+        padding: '20px',
+        textAlign: 'center' as const,
+        transition: 'all 0.3s',
+        ...(dragOver ? {
+            borderColor: 'var(--rainbow-blue, #1982c4)',
+            backgroundColor: 'rgba(25, 130, 196, 0.05)'
+        } : {})
+    }
 
     return (
         <div
             className={classes}
+            style={draggerStyle}
             onDragOver={e => handleDrag(e, true)}
             onDragLeave={e => handleDrag(e, false)}
             onDrop={handleDrop}
+            onMouseEnter={() => setDragOver(true)}
+            onMouseLeave={() => setDragOver(false)}
         >
             {children}
         </div>

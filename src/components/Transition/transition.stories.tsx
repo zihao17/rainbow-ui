@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Transition from './transition';
-import Button from '../Button/button';
 import React, { useState } from 'react';
+import Button from '../Button/button';
+import Transition from './transition';
 
 // 组件文档信息
 const meta: Meta<typeof Transition> = {
@@ -113,9 +113,26 @@ type Story = StoryObj<typeof Transition>;
  * ```
  */
 
+// 生成随机彩虹色背景的函数
+const getRandomColor = () => {
+    const rainbowColors = [
+        '#FF6B6B', // 红色
+        '#FF9E53', // 橙色
+        '#FFCF54', // 黄色
+        '#6BCB77', // 绿色
+        '#4D96FF', // 蓝色
+        '#9C7CF4', // 紫色
+        '#FF7BAC', // 粉色
+        '#5CD2E6', // 青色
+    ];
+    return rainbowColors[Math.floor(Math.random() * rainbowColors.length)];
+};
+
 // 示例包装器，便于控制显示状态
 const TransitionWrapper = (props: any) => {
     const [show, setShow] = useState(false);
+    const bgColor = React.useMemo(() => getRandomColor(), []); // 组件挂载时生成一个随机颜色并记住它
+
     return (
         <div>
             <Button onClick={() => setShow(!show)} style={{ marginBottom: '10px' }}>
@@ -124,13 +141,14 @@ const TransitionWrapper = (props: any) => {
             <div style={{ height: '200px', position: 'relative' }}>
                 <Transition in={show} timeout={300} {...props}>
                     <div style={{
-                        backgroundColor: '#9c27b0',
+                        backgroundColor: bgColor,
                         color: 'white',
                         padding: '20px',
                         borderRadius: '4px',
                         position: 'absolute',
                         width: '200px',
                         textAlign: 'center',
+                        boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
                     }}>
                         动画内容
                     </div>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Alert, { AlertType } from './alert';
-import Button, { ButtonType } from '../Button';
+import Button from '../Button';
+import Alert from './alert';
 
 /**
  * Alert 演示组件
@@ -18,19 +18,19 @@ const AlertDemo: React.FC = () => {
             <h2>提示组件</h2>
 
             <div className="demo-buttons">
-                <Button onClick={() => setShowDefaultAlert(true)} btnType={ButtonType.Default}>
+                <Button onClick={() => setShowDefaultAlert(true)} btnType={Button.Type.Default}>
                     默认
                 </Button>
 
-                <Button onClick={() => setShowSuccessAlert(true)} btnType={ButtonType.Primary}>
+                <Button onClick={() => setShowSuccessAlert(true)} btnType={Button.Type.Primary}>
                     成功
                 </Button>
 
-                <Button onClick={() => setShowDangerAlert(true)} btnType={ButtonType.Danger}>
+                <Button onClick={() => setShowDangerAlert(true)} btnType={Button.Type.Danger}>
                     危险
                 </Button>
 
-                <Button onClick={() => setShowWarningAlert(true)} btnType={ButtonType.Warning}>
+                <Button onClick={() => setShowWarningAlert(true)} btnType={Button.Type.Warning}>
                     警告
                 </Button>
 
@@ -43,7 +43,7 @@ const AlertDemo: React.FC = () => {
                 <Alert
                     title="默认提示"
                     description="这是一个默认提示，3秒后自动关闭"
-                    type={AlertType.Default}
+                    type={Alert.Type.Default}
                     onClose={() => setShowDefaultAlert(false)}
                 />
             )}
@@ -52,7 +52,7 @@ const AlertDemo: React.FC = () => {
                 <Alert
                     title="成功提示"
                     description="操作已成功完成，3秒后自动关闭"
-                    type={AlertType.Success}
+                    type={Alert.Type.Success}
                     onClose={() => setShowSuccessAlert(false)}
                 />
             )}
@@ -61,7 +61,7 @@ const AlertDemo: React.FC = () => {
                 <Alert
                     title="错误提示"
                     description="操作失败，请重试。3秒后自动关闭"
-                    type={AlertType.Danger}
+                    type={Alert.Type.Danger}
                     onClose={() => setShowDangerAlert(false)}
                 />
             )}
@@ -70,7 +70,7 @@ const AlertDemo: React.FC = () => {
                 <Alert
                     title="警告提示"
                     description="请注意，此操作可能有风险。3秒后自动关闭"
-                    type={AlertType.Warning}
+                    type={Alert.Type.Warning}
                     onClose={() => setShowWarningAlert(false)}
                 />
             )}
@@ -79,7 +79,7 @@ const AlertDemo: React.FC = () => {
                 <Alert
                     title="长时间提示"
                     description="这个提示将持续10秒后自动关闭"
-                    type={AlertType.Success}
+                    type={Alert.Type.Success}
                     duration={10000}
                     onClose={() => setShowLongAlert(false)}
                 />

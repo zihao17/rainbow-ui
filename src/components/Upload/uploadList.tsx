@@ -1,8 +1,9 @@
-import React, { FC } from 'react'
-import { UploadFile } from './upload'
-import Icon from '../Icon'
-import Progress from '../Progress'
 import classNames from 'classnames'
+import { FC } from 'react'
+import Icon from '../Icon'
+import Progress from '../Progress/progress'
+import { UploadFile } from './upload'
+import './uploadList.scss'
 
 // 定义接口 - 文件列表组件的属性
 interface UploadListProps {
@@ -22,14 +23,15 @@ export const UploadList: FC<UploadListProps> = (props) => {
                         <span className={classNames("file-name", {
                             [`file-name-${item.status}`]: item.status
                         })}>
-                            {/* 根据文件状态显示不同图标 */}
-                            <Icon icon="file-alt" theme="secondary" />
+                            <span className="file-icon">
+                                <Icon icon="file-alt" theme={Icon.Theme.Secondary} />
+                            </span>
                             {item.name}
                         </span>
                         <span className="file-status">
-                            {(item.status === 'uploading' || item.status === 'ready') && <Icon icon="spinner" spin theme="primary" />}
-                            {item.status === 'success' && <Icon icon="check-circle" theme="success" />}
-                            {item.status === 'error' && <Icon icon="times-circle" theme="danger" />}
+                            {(item.status === 'uploading' || item.status === 'ready') && <Icon icon="spinner" spin theme={Icon.Theme.Primary} />}
+                            {item.status === 'success' && <Icon icon="check-circle" theme={Icon.Theme.Success} />}
+                            {item.status === 'error' && <Icon icon="times-circle" theme={Icon.Theme.Danger} />}
                         </span>
                         <span className="file-actions">
                             <Icon icon="times" onClick={() => onRemove(item)} />

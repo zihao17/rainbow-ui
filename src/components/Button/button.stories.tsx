@@ -1,7 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Button, { ButtonType, ButtonSize, ButtonProps } from './button';
-import React from 'react';
-import { withInfo } from '@storybook/addon-info';
+import Button from './button';
 
 // 组件文档信息
 const meta: Meta<typeof Button> = {
@@ -23,7 +21,7 @@ import { Button } from 'rainbow-ui'
 ## 基本用法
 
 \`\`\`jsx
-<Button btnType={ButtonType.Primary} size={ButtonSize.Large}>按钮</Button>
+<Button btnType={Button.Type.Primary} size={Button.Size.Large}>按钮</Button>
 \`\`\`
         `,
             },
@@ -34,7 +32,7 @@ import { Button } from 'rainbow-ui'
         btnType: {
             description: '设置按钮类型',
             control: 'select',
-            options: [ButtonType.Default, ButtonType.Primary, ButtonType.Warning, ButtonType.Danger, ButtonType.Link],
+            options: [Button.Type.Default, Button.Type.Primary, Button.Type.Warning, Button.Type.Danger, Button.Type.Link],
             table: {
                 type: { summary: 'ButtonType' },
                 defaultValue: { summary: 'Default' },
@@ -43,7 +41,7 @@ import { Button } from 'rainbow-ui'
         size: {
             description: '设置按钮大小',
             control: 'select',
-            options: [ButtonSize.Large, ButtonSize.Middle, ButtonSize.Small],
+            options: [Button.Size.Large, Button.Size.Middle, Button.Size.Small],
             table: {
                 type: { summary: 'ButtonSize' },
                 defaultValue: { summary: 'Middle' },
@@ -60,7 +58,7 @@ import { Button } from 'rainbow-ui'
         href: {
             description: '点击跳转的地址，指定此属性 button 的行为和 a 链接一致',
             control: 'text',
-            if: { arg: 'btnType', eq: ButtonType.Link },
+            if: { arg: 'btnType', eq: Button.Type.Link },
         },
         className: {
             description: '额外的自定义类名',
@@ -84,7 +82,7 @@ type Story = StoryObj<typeof Button>;
  * ```
  * ## 使用Button
  * ```jsx
- * <Button btnType={ButtonType.Primary} size={ButtonSize.Large}>按钮</Button>
+ * <Button btnType={Button.Type.Primary} size={Button.Size.Large}>按钮</Button>
  * ```
  */
 
@@ -97,10 +95,10 @@ export const Basic: Story = {
     render: (args) => (
         <div style={{ display: 'flex', gap: '10px' }}>
             <Button {...args}>默认按钮</Button>
-            <Button btnType={ButtonType.Primary}>主要按钮</Button>
-            <Button btnType={ButtonType.Warning}>警告按钮</Button>
-            <Button btnType={ButtonType.Danger}>危险按钮</Button>
-            <Button btnType={ButtonType.Link} href="https://example.com">链接按钮</Button>
+            <Button btnType={Button.Type.Primary}>主要按钮</Button>
+            <Button btnType={Button.Type.Warning}>警告按钮</Button>
+            <Button btnType={Button.Type.Danger}>危险按钮</Button>
+            <Button btnType={Button.Type.Link} href="https://example.com">链接按钮</Button>
         </div>
     ),
     parameters: {
@@ -119,16 +117,16 @@ export const Sizes: Story = {
     render: () => (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                <Button size={ButtonSize.Large}>大号按钮</Button>
-                <Button btnType={ButtonType.Primary} size={ButtonSize.Large}>大号主按钮</Button>
+                <Button size={Button.Size.Large}>大号按钮</Button>
+                <Button btnType={Button.Type.Primary} size={Button.Size.Large}>大号主按钮</Button>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                 <Button>默认按钮</Button>
-                <Button btnType={ButtonType.Primary}>默认主按钮</Button>
+                <Button btnType={Button.Type.Primary}>默认主按钮</Button>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                <Button size={ButtonSize.Small}>小号按钮</Button>
-                <Button btnType={ButtonType.Primary} size={ButtonSize.Small}>小号主按钮</Button>
+                <Button size={Button.Size.Small}>小号按钮</Button>
+                <Button btnType={Button.Type.Primary} size={Button.Size.Small}>小号主按钮</Button>
             </div>
         </div>
     ),
@@ -151,12 +149,12 @@ export const Disabled: Story = {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
             <div style={{ display: 'flex', gap: '10px' }}>
                 <Button disabled>默认按钮(禁用)</Button>
-                <Button btnType={ButtonType.Primary} disabled>主要按钮(禁用)</Button>
+                <Button btnType={Button.Type.Primary} disabled>主要按钮(禁用)</Button>
             </div>
             <div style={{ display: 'flex', gap: '10px' }}>
-                <Button btnType={ButtonType.Warning} disabled>警告按钮(禁用)</Button>
-                <Button btnType={ButtonType.Danger} disabled>危险按钮(禁用)</Button>
-                <Button btnType={ButtonType.Link} href="https://example.com" disabled>链接按钮(禁用)</Button>
+                <Button btnType={Button.Type.Warning} disabled>警告按钮(禁用)</Button>
+                <Button btnType={Button.Type.Danger} disabled>危险按钮(禁用)</Button>
+                <Button btnType={Button.Type.Link} href="https://example.com" disabled>链接按钮(禁用)</Button>
             </div>
         </div>
     ),
@@ -175,7 +173,7 @@ export const Loading: Story = {
     args: {},
     render: () => (
         <div style={{ display: 'flex', gap: '10px' }}>
-            <Button btnType={ButtonType.Primary} disabled>
+            <Button btnType={Button.Type.Primary} disabled>
                 <span style={{ marginRight: '8px' }}>&#8635;</span>
                 加载中
             </Button>
@@ -202,9 +200,9 @@ export const ButtonGroups: Story = {
                 <Button>右</Button>
             </div>
             <div style={{ display: 'flex', gap: '0' }}>
-                <Button btnType={ButtonType.Primary}>左</Button>
-                <Button btnType={ButtonType.Primary}>中</Button>
-                <Button btnType={ButtonType.Primary}>右</Button>
+                <Button btnType={Button.Type.Primary}>左</Button>
+                <Button btnType={Button.Type.Primary}>中</Button>
+                <Button btnType={Button.Type.Primary}>右</Button>
             </div>
         </div>
     ),

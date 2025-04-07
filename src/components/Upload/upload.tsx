@@ -1,8 +1,8 @@
-import React, { FC, useRef, useState, ChangeEvent } from 'react'
 import axios from 'axios'
-import Button, { ButtonType } from '../Button'
-import UploadList from './uploadList'
+import React, { ChangeEvent, FC, useRef, useState } from 'react'
+import Button from '../Button'
 import Dragger from './dragger'
+import UploadList from './uploadList'
 
 
 // 文件状态类型
@@ -211,7 +211,7 @@ export const Upload: FC<UploadProps> = (props) => {
                         </div>
                     )}
                 </Dragger> :
-                <Button btnType={ButtonType.Primary} onClick={handleClick}>上传文件</Button>
+                <Button btnType={Button.Type.Primary} onClick={handleClick}>上传文件</Button>
             }
             {/* 文件输入框 */}
             <input

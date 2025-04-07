@@ -1,6 +1,5 @@
-import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import Divider, { DividerDirection, DividerStyle, TextAlign } from './divider';
+import Divider from './divider';
 
 import Icon from '../Icon/icon';
 
@@ -31,7 +30,7 @@ import { Divider } from 'rainbow-ui'
 <Divider>文本内容</Divider>
 
 // 垂直分割线
-<Divider direction={DividerDirection.Vertical} />
+<Divider direction={Divider.Direction.Vertical} />
 \`\`\`
         `,
             },
@@ -58,7 +57,7 @@ export const Simple: Story = {
     render: () => (
         <>
             <p>这是一个简约风格的水平分割线</p>
-            <Divider dividerStyle={DividerStyle.Simple} />
+            <Divider dividerStyle={Divider.Style.Simple} />
             <p>分割线下方的内容</p>
         </>
     ),
@@ -69,11 +68,11 @@ export const Normal: Story = {
     render: () => (
         <>
             <p>这是一个Normal风格的水平分割线</p>
-            <Divider dividerStyle={DividerStyle.Normal} />
+            <Divider dividerStyle={Divider.Style.Normal} />
             <p>这是一个带文本的Normal分割线</p>
-            <Divider dividerStyle={DividerStyle.Normal}>Normal文本</Divider>
+            <Divider dividerStyle={Divider.Style.Normal}>Normal文本</Divider>
             <p>这是一个虚线样式的Normal分割线</p>
-            <Divider dividerStyle={DividerStyle.Normal} dashed />
+            <Divider dividerStyle={Divider.Style.Normal} dashed />
             <p>分割线下方的内容</p>
         </>
     ),
@@ -86,7 +85,7 @@ export const Dashed: Story = {
             <p>这是一个虚线样式的分割线</p>
             <Divider dashed />
             <p>这是一个简约风格的虚线分割线</p>
-            <Divider dividerStyle={DividerStyle.Simple} dashed />
+            <Divider dividerStyle={Divider.Style.Simple} dashed />
             <p>分割线下方的内容</p>
         </>
     ),
@@ -99,9 +98,9 @@ export const WithText: Story = {
             <p>这是带文本的分割线（居中对齐）</p>
             <Divider>Rainbow UI</Divider>
             <p>这是带文本的分割线（左对齐）</p>
-            <Divider textAlign={TextAlign.Left}>左对齐文本</Divider>
+            <Divider textAlign={Divider.TextAlign.Left}>左对齐文本</Divider>
             <p>这是带文本的分割线（右对齐）</p>
-            <Divider textAlign={TextAlign.Right}>右对齐文本</Divider>
+            <Divider textAlign={Divider.TextAlign.Right}>右对齐文本</Divider>
             <p>分割线下方的内容</p>
         </>
     ),
@@ -129,11 +128,11 @@ export const Vertical: Story = {
     render: () => (
         <div style={{ height: '100px', display: 'flex', alignItems: 'center' }}>
             <span>文本</span>
-            <Divider direction={DividerDirection.Vertical} />
+            <Divider direction={Divider.Direction.Vertical} />
             <span>文本</span>
-            <Divider direction={DividerDirection.Vertical} dividerStyle={DividerStyle.Simple} />
+            <Divider direction={Divider.Direction.Vertical} dividerStyle={Divider.Style.Simple} />
             <span>文本</span>
-            <Divider direction={DividerDirection.Vertical} dashed />
+            <Divider direction={Divider.Direction.Vertical} dashed />
             <span>文本</span>
         </div>
     ),
@@ -144,11 +143,11 @@ export const CustomStyle: Story = {
     render: () => (
         <>
             <p>自定义颜色的分割线</p>
-            <Divider dividerStyle={DividerStyle.Simple} color="#ff6b6b" />
+            <Divider dividerStyle={Divider.Style.Simple} color="#ff6b6b" />
             <p>自定义尺寸的分割线</p>
-            <Divider dividerStyle={DividerStyle.Simple} color="#4ecdc4" size="3px" />
+            <Divider dividerStyle={Divider.Style.Simple} color="#4ecdc4" size="3px" />
             <p>自定义长度的分割线</p>
-            <Divider dividerStyle={DividerStyle.Simple} color="#1a535c" length="50%" />
+            <Divider dividerStyle={Divider.Style.Simple} color="#1a535c" length="50%" />
             <p>分割线下方的内容</p>
         </>
     ),

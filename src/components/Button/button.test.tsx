@@ -1,6 +1,5 @@
-import React from 'react'
-import { render, fireEvent } from '@testing-library/react'
-import Button, { ButtonType, ButtonSize } from './button'
+import { fireEvent, render } from '@testing-library/react'
+import Button from './button'
 
 describe('Button 组件测试', () => {
     it('应该正确渲染默认按钮', () => {
@@ -12,14 +11,14 @@ describe('Button 组件测试', () => {
     })
 
     it('应该根据不同的属性正确渲染', () => {
-        const wrapper = render(<Button btnType={ButtonType.Primary} size={ButtonSize.Large}>Button</Button>)
+        const wrapper = render(<Button btnType={Button.Type.Primary} size={Button.Size.Large}>Button</Button>)
         const element = wrapper.getByText('Button')
         expect(element).toBeInTheDocument()
         expect(element).toHaveClass('btn-primary btn-lg')
     })
 
     it('当btnType为link且提供href时应该渲染为链接', () => {
-        const wrapper = render(<Button btnType={ButtonType.Link} href="https://www.baidu.com">Link</Button>)
+        const wrapper = render(<Button btnType={Button.Type.Link} href="https://www.baidu.com">Link</Button>)
         const element = wrapper.getByText('Link')
         expect(element).toBeInTheDocument()
         expect(element.tagName).toEqual('A')
