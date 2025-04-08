@@ -12,6 +12,11 @@ Rainbow-UI 是一个基于 React 的组件库，旨在提供美观、实用的�
 
 [rainbow-ui 文档 | document](https://rainbow-ui-storybook.vercel.app/)
 
+<img src="https://github.com/user-attachments/assets/0f0569c6-9820-47fb-808d-6f9076d42764" width="500" alt="组件库首页">
+
+<img src="https://github.com/user-attachments/assets/89a2366b-2f74-4f43-af0d-8defcf6fadca" width="500" alt="组件库文档">
+
+
 ## TODO
 
 项⽬⼯作：
